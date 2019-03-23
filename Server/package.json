@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "employment-server"
+  ],
+  "author": "jasmine",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
