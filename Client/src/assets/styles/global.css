@@ -1,0 +1,46 @@
+* {
+    font-family: 'Microsoft Yahei';
+    padding: 0;
+    margin: 0;
+}
+
+/* 关于定位的全局样式 */
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.relative {
+    position: relative;
+}
+
+/* 关于字体大小位置与字体颜色的全局样式 */
+.text-important {
+    color: #1a2a3a;
+    font-size: 20px;
+}
+
+.text-normal {
+    color: #3a4a5a;
+    font-size: 16px;
+}
+
+.text-info {
+    color: #5a6a7a;
+    font-size: 12px;
+}
+.text-bold {
+    font-weight: bold;
+}
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
