@@ -28,7 +28,11 @@ export default {
 </script>
 
 <style scoped>
+    div {
+        padding: 2%;
+    }
     li {
         list-style: none;
+        color: white;
     }
 </style>

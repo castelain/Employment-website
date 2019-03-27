@@ -12,7 +12,6 @@
             <!-- Footer content -->
             <slot name="my-footer"></slot>
         </el-footer>
-        
     </el-container>
     
 </template>
@@ -22,14 +21,10 @@ export default {
     name: 'MyContainer',
     data () {
         return {
-            bgHeight: document.body.clientWidth / 1440 * 650 + 'px',
-        };
+            bgHeight: Number(window.innerHeight) * 0.3 + 'px'
+        }
     },
-    mounted() {
-       window.onresize = function(){
-           this.bgHeight = document.body.clientWidth / 1440 * 650 + 'px';
-       } ;
-    },
+   
 }
 </script>
 
@@ -38,8 +33,10 @@ export default {
         margin-top: -50px;
     }
     .el-footer {
-        position: fixed;
-        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: #bbbbbb;
+        margin-top: 6%;
     }
     .el-header, .el-footer, .el-main {
         padding: 0;

@@ -13,6 +13,11 @@
     float: right;
 }
 
+
+.center {
+    margin: 0 auto;
+}
+
 .relative {
     position: relative;
 }
@@ -43,4 +48,12 @@
 }
 .text-right {
     text-align: right;
+}
+/* 一些其它的样式设计 */
+.el-col, .el-row {
+    overflow-x: hidden;
+}
+/* 顶部banner下的内容距上的边距 */
+.top {
+    margin-top: 5%; 
 }
