@@ -1,5 +1,3 @@
-# user
-
 ## Student
 - id: int PK NN UN
 - username: varchar(255) NN UN
@@ -23,7 +21,7 @@
 
 ## Seminar
 - id: int PK UN NN
-- company_id: int FK NN
+- company_id: int FK（级联删除，级联更新） NN
 - holds_in: timestamp NN
 - address: varchar(255) NN
 - majors: varchar(255)
@@ -36,9 +34,63 @@
 
 ## Resume
 - id: int PK NN UN
-- student_id: int FK UN
+- student_id: int FK（级联删除，级联更新） UN
 - email: varchar(255) NN
-- 
+- sex: int(1) NN
+- birthday: timestamp NN
+- telephone: varchar(255) NN
+- will_jobs: varchar(255)
+- will_spots: varchar(255)
+- will_salary: varchar(255)
+- political_status: int(1) NN
+- introduction: varchar(1024)
+- nationality: int(1) NN
+- address: varchar(255) NN
+- marry_status: int(1) NN
+- awards: varchar(255) 
+- skills: varchar(255)
+- experiences: varchar(1024)
 
+## Student_Company
+- id: int PK NN UN
+- student_id: int NN FK（级联删除，级联更新）
+- company_id: int NN FK（级联删除，级联更新）
+- message: varchar(2048) NN
+- time: timestamp NN DF(CURRENT_TIMESTAMP)
+- type: int(1) (0: s->c, 1: c->s) NN
 
-# admin
+## Administrator
+- id: int PK NN UN
+- username: varchar(255) NN UN
+- realname: varchar(255) NN
+- password: varchar(255) NN
+
+## Employment_Policy
+- id: int PK NN UN
+- title: varchar(255) NN
+- created_at: timestamp NN DF(CURRENT_TIMESTAMP)
+- content: varchar(4096) NN
+  
+## Career_Assessment
+- id: int PK NN UN
+- title: varchar(255) NN
+- created_at: timestamp NN DF(CURRENT_TIMESTAMP)
+- content: varchar(4096) NN
+  
+## School_Event
+- id: int PK NN UN
+- title: varchar(255) NN
+- created_at: timestamp NN DF(CURRENT_TIMESTAMP)
+- content: varchar(4096) NN
+  
+## School_College
+- id: int PK NN UN
+- title: varchar(255) NN
+- created_at: timestamp NN DF(CURRENT_TIMESTAMP)
+- content: varchar(4096) NN
+
+## Latest_Notification
+- id: int PK NN UN
+- title: varchar(255) NN
+- created_at: timestamp NN DF(CURRENT_TIMESTAMP)
+- content: varchar(4096) NN
