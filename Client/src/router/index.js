@@ -14,6 +14,10 @@ import SeminarDetail from '@/components/built-components/seminars/Seminar-Detail
 import NotificationList from '@/components/built-components/latest-notification/Notification-List'
 import NotificationDetail from '@/components/built-components/latest-notification/Notification-Detail'
 import MajorDetail from '@/components/built-components/school-introduction/Major-Detail'
+import AssessmentDetail from '@/components/built-components/employment-information/Assessment-Detail'
+import PolicymentDetail from '@/components/built-components/employment-information/Policy-Detail'
+import Login from '@/components/built-components/login/Login'
+import Register from '@/components/built-components/register/Register'
 
 Vue.use(Router)
 
@@ -45,6 +49,26 @@ export default new Router({
           component: CareerAssessment
         }
       ]
+    },
+    {
+      path: '/assessment-detail/:id',
+      name: 'assessment-detail',
+      component: AssessmentDetail
+    },
+    {
+      path: '/policyment-detail/:id',
+      name: 'policyment-detail',
+      component: PolicymentDetail
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
     },
     {
       path: '/school-introduction',

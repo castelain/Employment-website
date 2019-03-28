@@ -64,6 +64,11 @@ export default {
             ],
         }
     },
+    methods: {
+        showDetail: function(id) {
+            this.$router.push({ path: '/seminar-detail/' + id });
+        }
+    },
     mounted() {
         let nav = document.getElementById('nav');
         this.navHeight = window.getComputedStyle(nav).height;

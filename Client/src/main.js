@@ -20,6 +20,7 @@ import MyInnerNav from '@/components/base-components/My-Inner-Nav'
 import MyTitle from '@/components/base-components/My-Title'
 import MyTabs from '@/components/base-components/My-Tabs'
 import MySteps from '@/components/base-components/My-Steps'
+import MyPagination from '@/components/base-components/My-Pagination'
 // 引入自定义的全局样式文件
 import './assets/styles/global.css'
 // 引入axios
@@ -43,6 +44,7 @@ Vue.component('my-inner-nav', MyInnerNav)
 Vue.component('my-title', MyTitle)
 Vue.component('my-tabs', MyTabs)
 Vue.component('my-steps', MySteps)
+Vue.component('my-pagination', MyPagination)
 
 // 注册全局过滤器
 // 字符串截取，超出的部分用......代替
