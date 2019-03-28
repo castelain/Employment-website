@@ -81,7 +81,30 @@ export default {
                 }
             ]
         }
-    }
+    },
+    created() {
+        // 根据是否登录，来更改导航
+        if(localStorage.getItem('isLogined')){
+            console.log('my-header');
+            if(localStorage.getItem('type') == 0){
+                this.navItems[4] =  { msg: localStorage.getItem('nickname'), src: '/student/' + localStorage.getItem('id'), subItems: [] };
+            }else if(localStorage.getItem('type') == 1){
+                this.navItems[4] = { msg: localStorage.getItem('name'), src: '/company/' + localStorage.getItem('id'), subItems: [] };
+            }else if(localStorage.getItem('type') == 2){
+                this.navItems[4] = { msg: localStorage.getItem('nickname'), src: '/administrator/' + localStorage.getItem('id'), subItems: [] };
+            }
+
+            // this.navItems.push({ msg: '登出', src: '' });
+
+            // this.$nextTick(function(){
+            //     let logOut = document.getElementById('登出');
+            //     logOut.addEventListener('click', function(){
+            //         localStorage.removeItem('isLogined');
+            //         location.reload();
+            //     });
+            // })
+        }
+    },
 }
 </script>
 

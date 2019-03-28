@@ -51,7 +51,9 @@ export default {
             if(this.form.rememberPassword){
               localStorage.setItem('password', this.form.password);
             }
-            localStorage.setItem('phone', this.form.phone);
+            localStorage.setItem('id', 1);
+            localStorage.setItem('type', 1);
+            localStorage.setItem('name', this.form.name);
             localStorage.setItem('isLogined', true);
             this.$router.push('/');
           }else{
@@ -64,10 +66,10 @@ export default {
     },
   },
   mounted() {
-    let phone = localStorage.getItem('phone')
+    let name = localStorage.getItem('name')
     let password = localStorage.getItem('password');
-    if(phone && password){
-      this.form.phone = phone;
+    if(name && password){
+      this.form.name = name;
       this.form.password = password;
     }
   },

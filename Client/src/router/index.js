@@ -18,6 +18,10 @@ import AssessmentDetail from '@/components/built-components/employment-informati
 import PolicymentDetail from '@/components/built-components/employment-information/Policy-Detail'
 import Login from '@/components/built-components/login/Login'
 import Register from '@/components/built-components/register/Register'
+import Student from '@/components/built-components/login/student/Student'
+import Company from '@/components/built-components/login/company/Company'
+import Administrator from '@/components/built-components/login/administrator/Administrator'
+import Create from '@/components/built-components/login/student/profile/Create'
 
 Vue.use(Router)
 
@@ -111,6 +115,32 @@ export default new Router({
       path: '/notification-detail/:id',
       name: 'notification-detail',
       component: NotificationDetail
+    },
+    // 学生部分路由
+    {
+      path: '/student/:id',
+      name: 'student',
+      component: Student,
+      children: [
+        {
+          path: 'create-profile',
+          name: 'create-profile',
+          component: Create
+        },
+        
+      ]
+    },
+    // 企业部分路由
+    {
+      path: '/company/:id',
+      name: 'company',
+      component: Company
+    },
+    // 管理员部分路由
+    {
+      path: '/administrator/:id',
+      name: 'administrator',
+      component: Administrator
     },
     {
       path: '*',

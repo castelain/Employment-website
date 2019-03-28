@@ -59,7 +59,7 @@ export default {
     data () {
         return {
             navHeight: null,
-             // 内部导航数据
+            // 内部导航数据
             innerNavs: [
                 {
                     src: '/',

@@ -8,10 +8,10 @@
         </el-form-item>
 
         <el-checkbox
-        v-model="form.rememberPassword"
-        label="记住密码"
-        class="left"
-        style="color: lightgray"
+          v-model="form.rememberPassword"
+          label="记住密码"
+          class="left"
+          style="color: lightgray"
         ></el-checkbox>
         <a href="#" style="color: lightgray; font-size: 14px;" class="right">忘记密码</a>
         <el-form-item>
@@ -51,8 +51,10 @@ export default {
             if(this.form.rememberPassword){
               localStorage.setItem('password', this.form.password);
             }
-            localStorage.setItem('phone', this.form.phone);
+            localStorage.setItem('id', 1);
+            localStorage.setItem('nickname', this.form.nickname);
             localStorage.setItem('isLogined', true);
+            localStorage.setItem('type', 0);
             this.$router.push('/');
           }else{
             this.$message({
@@ -64,10 +66,10 @@ export default {
     },
   },
   mounted() {
-    let phone = localStorage.getItem('phone')
+    let nickname = localStorage.getItem('nickname')
     let password = localStorage.getItem('password');
-    if(phone && password){
-      this.form.phone = phone;
+    if(nickname && password){
+      this.form.nickname = nickname;
       this.form.password = password;
     }
   },
