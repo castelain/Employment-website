@@ -34,7 +34,7 @@
 
 ## Resume
 - id: int PK NN UN
-- student_id: int FK（级联删除，级联更新） UN
+- student_id: int FK（级联删除，级联更新） NN UN
 - email: varchar(255) NN
 - sex: int(1) NN
 - birthday: timestamp NN
@@ -42,9 +42,9 @@
 - will_jobs: varchar(255)
 - will_spots: varchar(255)
 - will_salary: varchar(255)
-- political_status: int(1) NN
+- political_status: varchar(255) NN
 - introduction: varchar(1024)
-- nationality: int(1) NN
+- nationality: varchar(255) NN
 - address: varchar(255) NN
 - marry_status: int(1) NN
 - awards: varchar(255) 
