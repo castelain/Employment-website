@@ -6,4 +6,4 @@ let sqlMap = {
     }
 };
 
-mudule.exports = sqlMap;
+module.exports = sqlMap;

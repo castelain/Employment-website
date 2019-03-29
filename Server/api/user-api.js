@@ -2,7 +2,7 @@ const config = require('../config/database-config');
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
-const $sql = require('../database/sqlMap');
+const $sql = require('../database/sql-map');
 
 const connection = mysql.createConnection(config);
 
@@ -71,4 +71,4 @@ router.post('/updateUser', (req, res) => {
     });
 });
 
-module.exports = user-router;
+module.exports = router;
