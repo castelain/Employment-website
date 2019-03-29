@@ -2,7 +2,7 @@ const config = require('../config/database-config');
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
-const $sql = require('../database/sql-map');
+const $sql = require('../sql-map/sql-map');
 
 const connection = mysql.createConnection(config);
 
@@ -12,7 +12,7 @@ let jsonWrite = function(res, ret){
     if(typeof ret === 'undefined'){
         res.send('err');
     }else{
-        consolw.log(ret);
+        console.log(ret);
         res.send(ret);
     }
 }
@@ -20,6 +20,18 @@ let jsonWrite = function(res, ret){
 let dateStr = function (str) {
     return new Date(str.slice(0,7));
 }
+
+// 获取用户接口
+router.get('/users', (req, res) => {
+    let sql = $sql.user.select_all;
+    connection.query(sql, [], function (err, result) {
+        if(err) {
+            console.log(err);
+        }else {
+            res.json(result);
+        }
+    });
+});
 
 // 增加用户接口
 router.post('/addUser', (req, res) => {

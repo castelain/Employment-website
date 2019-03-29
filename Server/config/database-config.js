@@ -1,7 +1,7 @@
 // 数据库的相关配置信息
 module.exports = {
-    user: 'debian-sys-maint',
+    user: 'jasmine',
     host: 'localhost',
-    database: 'students',
-    password: 'cnpiFpOplc3wswMv'
+    database: 'employment',
+    password: 'root'
 }
