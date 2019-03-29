@@ -9,7 +9,7 @@ const connection = mysql.createConnection(config);
 connection.connect();
 
 // 获取学校学院的列表
-router.get('/latest_notification', (req, res) => {
+router.get('/school_college', (req, res) => {
     let sql = $sql.select_all;
     connection.query(sql, [], (err, result) => {
         if(err) {
@@ -21,7 +21,7 @@ router.get('/latest_notification', (req, res) => {
 });
 
 // 获取指定id的学校学院
-router.get('/latest_notification/:id', (req, res) => {
+router.get('/school_college/:id', (req, res) => {
     let sql = $sql.select_by_id;
     connection.query(sql, [ req.params['id'] ], (err, result) => {
         if(err) {
@@ -33,9 +33,9 @@ router.get('/latest_notification/:id', (req, res) => {
 })
 
 // 新增一条学校学院
-router.post('/latest_notification', (req, res) => {
+router.post('/school_college', (req, res) => {
     let sql = $sql.add_item;
-    connection.query(sql, [ req.body.title, req.body.content ], (err, result) => {
+    connection.query(sql, [ req.body.title, req.body.majors, req.body.content ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '新增一条学校学院失败了：' + err));
         }else {
@@ -45,9 +45,9 @@ router.post('/latest_notification', (req, res) => {
 });
 
 // 根据id更新学校学院
-router.put('/latest_notification/:id', (req, res) => {
+router.put('/school_college/:id', (req, res) => {
     let sql = $sql.update_by_id;
-    connection.query(sql, [ req.body.title, req.body.content, req.params['id'] ], (err, result) => {
+    connection.query(sql, [ req.body.title, req.body.majors, req.body.content, req.params['id'] ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '根据id更新学校学院失败了：' + err));
         }else {
@@ -57,7 +57,7 @@ router.put('/latest_notification/:id', (req, res) => {
 });
 
 // 根据id删除学校学院
-router.delete('/latest_notification/:id', (req, res) => {
+router.delete('/school_college/:id', (req, res) => {
     let sql = $sql.detele_item;
     connection.query(sql, [ req.params['id'] ], (err, result) => {
         if(err) {

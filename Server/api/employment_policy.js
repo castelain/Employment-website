@@ -9,7 +9,7 @@ const connection = mysql.createConnection(config);
 connection.connect();
 
 // 获取就业政策的列表
-router.get('/latest_notification', (req, res) => {
+router.get('/employment_policy', (req, res) => {
     let sql = $sql.select_all;
     connection.query(sql, [], (err, result) => {
         if(err) {
@@ -21,7 +21,7 @@ router.get('/latest_notification', (req, res) => {
 });
 
 // 获取指定id的就业政策
-router.get('/latest_notification/:id', (req, res) => {
+router.get('/employment_policy/:id', (req, res) => {
     let sql = $sql.select_by_id;
     connection.query(sql, [ req.params['id'] ], (err, result) => {
         if(err) {
@@ -33,7 +33,7 @@ router.get('/latest_notification/:id', (req, res) => {
 })
 
 // 新增一条就业政策
-router.post('/latest_notification', (req, res) => {
+router.post('/employment_policy', (req, res) => {
     let sql = $sql.add_item;
     connection.query(sql, [ req.body.title, req.body.content ], (err, result) => {
         if(err) {
@@ -45,7 +45,7 @@ router.post('/latest_notification', (req, res) => {
 });
 
 // 根据id更新就业政策
-router.put('/latest_notification/:id', (req, res) => {
+router.put('/employment_policy/:id', (req, res) => {
     let sql = $sql.update_by_id;
     connection.query(sql, [ req.body.title, req.body.content, req.params['id'] ], (err, result) => {
         if(err) {
@@ -57,7 +57,7 @@ router.put('/latest_notification/:id', (req, res) => {
 });
 
 // 根据id删除就业政策
-router.delete('/latest_notification/:id', (req, res) => {
+router.delete('/employment_policy/:id', (req, res) => {
     let sql = $sql.detele_item;
     connection.query(sql, [ req.params['id'] ], (err, result) => {
         if(err) {

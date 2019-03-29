@@ -9,7 +9,7 @@ const connection = mysql.createConnection(config);
 connection.connect();
 
 // 获取职业评测的列表
-router.get('/latest_notification', (req, res) => {
+router.get('/career_assessment', (req, res) => {
     let sql = $sql.select_all;
     connection.query(sql, [], (err, result) => {
         if(err) {
@@ -21,7 +21,7 @@ router.get('/latest_notification', (req, res) => {
 });
 
 // 获取指定id的职业评测
-router.get('/latest_notification/:id', (req, res) => {
+router.get('/career_assessment/:id', (req, res) => {
     let sql = $sql.select_by_id;
     connection.query(sql, [ req.params['id'] ], (err, result) => {
         if(err) {
@@ -33,7 +33,7 @@ router.get('/latest_notification/:id', (req, res) => {
 })
 
 // 新增一条职业评测
-router.post('/latest_notification', (req, res) => {
+router.post('/career_assessment', (req, res) => {
     let sql = $sql.add_item;
     connection.query(sql, [ req.body.title, req.body.content ], (err, result) => {
         if(err) {
@@ -45,7 +45,7 @@ router.post('/latest_notification', (req, res) => {
 });
 
 // 根据id更新职业评测
-router.put('/latest_notification/:id', (req, res) => {
+router.put('/career_assessment/:id', (req, res) => {
     let sql = $sql.update_by_id;
     connection.query(sql, [ req.body.title, req.body.content, req.params['id'] ], (err, result) => {
         if(err) {
@@ -57,7 +57,7 @@ router.put('/latest_notification/:id', (req, res) => {
 });
 
 // 根据id删除职业评测
-router.delete('/latest_notification/:id', (req, res) => {
+router.delete('/career_assessment/:id', (req, res) => {
     let sql = $sql.detele_item;
     connection.query(sql, [ req.params['id'] ], (err, result) => {
         if(err) {
