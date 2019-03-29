@@ -3,6 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 let user_router = require('./api/user-api');
 let latest_notification_router = require('./api/latest_notification');
+let career_assessment_router = require('./api/career_assessment'); 
+let employment_policy_router = require('./api/employment_policy');
+let school_college_router = require('./api/school_college');
+let school_event_router = require('./api/school_event');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -27,6 +31,10 @@ formateResult = function() {
 
 app.use('/', user_router);
 app.use('/', latest_notification_router);
+app.use('/', career_assessment_router);
+app.use('/', employment_policy_router);
+app.use('/', school_college_router);
+app.use('/', school_event_router);
 
 app.listen(3000, () => {
     console.log('App listening on port 3000!');
