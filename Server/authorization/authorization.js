@@ -28,7 +28,7 @@ function retoken(req, res, next) {
 }
 
 // 签发token
-function createToken(req) {
+function createToken(req, res, next) {
     // 生成token
     const userToken = {
         "username": req.body.username,
@@ -37,7 +37,7 @@ function createToken(req) {
     };
     // 签发token，指定过期时间为2h
     const token = jwt.sign(userToken, jwtTokenSecret, { expiresIn: '2h' });
-    return token;
+    res.json(formateResult(200, '签发token成功！', token));
 }
 
 module.exports = { retoken, createToken};
