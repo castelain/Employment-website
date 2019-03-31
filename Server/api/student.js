@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 const $sql = require('../sql-map/student');
+// 引进认证部分所需的函数
+const createToken = require('../authorization/create-token');
+const retoken = require('../authorization/retoken');
 
 const connection = mysql.createConnection(config);
 
@@ -53,6 +56,9 @@ router.post('/student', (req, res) => {
         if(err) {
             res.json(formateResult(500, '新增一条学生信息失败了：' + err));
         }else {
+            // 签发token
+            let token = createToken(req);
+            console.log(token);
             res.json(formateResult(200, '新增一条学生信息成功了！', result));
         }
     });

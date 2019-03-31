@@ -27,17 +27,5 @@ function retoken(req, res, next) {
     });
 }
 
-// 签发token
-function createToken(req, res, next) {
-    // 生成token
-    const userToken = {
-        "username": req.body.username,
-        "password": req.body.password,
-        "loginAt": new Date()
-    };
-    // 签发token，指定过期时间为2h
-    const token = jwt.sign(userToken, jwtTokenSecret, { expiresIn: '2h' });
-    res.json(formateResult(200, '签发token成功！', token));
-}
 
-module.exports = { retoken, createToken};
+module.exports = retoken;
