@@ -62,7 +62,7 @@ router.get('/company/:id/seminar', (req, res) => {
 // 新增一条宣讲会信息
 router.post('/seminar', (req, res) => {
     let sql = $sql.add_item;
-    connection.query(sql, [ req.body.company_id, req.body.holds_in, req.body.address, req.body.majors, req.body.company_description, req.body.salary_description, req.body.application_process ], (err, result) => {
+    connection.query(sql, [ req.body.company_id, req.body.holds_in, req.body.address, req.body.majors, req.body.company_description, req.body.job_description, req.body.salary_description, req.body.application_process ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '新增一条宣讲会信息失败了：' + err));
         }else {
