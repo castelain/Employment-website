@@ -1,12 +1,12 @@
 <template>
     <div>
-        Create
+        Delete
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Create',
+    name: 'Delete',
     data () {
         return {
 

@@ -22,6 +22,9 @@ import Student from '@/components/built-components/login/student/Student'
 import Company from '@/components/built-components/login/company/Company'
 import Administrator from '@/components/built-components/login/administrator/Administrator'
 import Create from '@/components/built-components/login/student/profile/Create'
+import Delete from '@/components/built-components/login/student/profile/Delete'
+import See from '@/components/built-components/login/student/profile/See'
+import Update from '@/components/built-components/login/student/profile/Update'
 
 Vue.use(Router)
 
@@ -127,7 +130,21 @@ export default new Router({
           name: 'create-profile',
           component: Create
         },
-        
+        {
+          path: 'Delete-profile',
+          name: 'Delete-profile',
+          component: Delete
+        },
+        {
+          path: 'See-profile',
+          name: 'See-profile',
+          component: See
+        },
+        {
+          path: 'Update-profile',
+          name: 'Update-profile',
+          component: Update
+        },
       ]
     },
     // 企业部分路由

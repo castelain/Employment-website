@@ -2,6 +2,9 @@
 
 const jwt = require('jsonwebtoken');
 
+// 秘钥
+const jwtTokenSecret = 'jasmine';
+
 // 签发token
 function createToken(req) {
     // 生成token
@@ -10,8 +13,8 @@ function createToken(req) {
         "password": req.body.password,
         "loginAt": new Date()
     };
-    // 签发token，指定过期时间为2h
-    const token = jwt.sign(userToken, jwtTokenSecret, { expiresIn: '2h' });
+    // 签发token，指定过期时间为2d
+    const token = jwt.sign(userToken, jwtTokenSecret, { expiresIn: '2d' });
     return token;
 }
 

@@ -1,6 +1,8 @@
 let sqlMap = {
     select_all: 'select * from Student',
     select_by_id: 'select * from Student where id = ?',
+    select_by_username: 'select * from Student where username = ?',
+    search_item: 'select * from Student where username = ? and password = ?',
     add_item: 'insert into Student(username, realname, password, school, college, major) values (?, ?, ?, ?, ?, ?)',
     update_by_id: 'update Student set username = ?, realname = ?, password = ?, school = ?, college = ?, major = ? where id = ?',
     update_password: 'update Student set password = ? where id = ?',

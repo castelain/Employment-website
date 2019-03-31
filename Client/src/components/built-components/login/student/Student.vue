@@ -6,7 +6,7 @@
             <my-inner-nav :navs="innerNavs"></my-inner-nav>
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <el-menu mode="vertical" default-active="1" router 
+                    <!-- <el-menu mode="vertical" default-active="1" router 
                             background-color="#408FFF"
                             text-color="#fff"
                             active-text-color="#aabbaa">
@@ -19,7 +19,34 @@
                                     {{ item.title }}
                             </el-menu-item>
                         </el-submenu>
+                    </el-menu> -->
+
+                    <el-menu mode="vertical" default-active="1" router
+                            background-color="#408FFF"
+                            text-color="#fff"
+                            active-text-color="#aabbaa">
+                        <el-menu-item :index="menus[0].path">
+                            <span>{{ menus[0].menus }}</span>
+                        </el-menu-item>
+                        <el-submenu :index="menus[1].path">
+                            <template slot="title">{{ menus[1].menus }}</template>
+                            <el-menu-item v-for="(item, subIndex) in menus[1].submenus"
+                                :index="item.path"
+                                :key="subIndex">>
+                                    {{ item.title }}
+                            </el-menu-item>
+                        </el-submenu>
+                        <el-menu-item :index="menus[2].path">
+                            <span>{{ menus[2].menus }}</span>
+                        </el-menu-item>
+                        <el-menu-item :index="menus[3].path">
+                            <span>{{ menus[3].menus }}</span>
+                        </el-menu-item>
+                        <el-menu-item :index="menus[4].path">
+                            <span>{{ menus[4].menus }}</span>
+                        </el-menu-item>
                     </el-menu>
+                    
                     
                 </el-col>
                 <el-col :span="18">
@@ -63,6 +90,18 @@ export default {
                         {
                             title: '创建简历',
                             path: '/student/create-profile'
+                        },
+                        {
+                            title: '更新简历',
+                            path: '/student/update-profile'
+                        },
+                        {
+                            title: '预览简历',
+                            path: '/student/see-profile'
+                        },
+                        {
+                            title: '删除简历',
+                            path: '/student/delete-profile'
                         }
                     ]
                 },

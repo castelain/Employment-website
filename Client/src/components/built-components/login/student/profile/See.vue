@@ -1,12 +1,12 @@
 <template>
     <div>
-        Create
+        See
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Create',
+    name: 'See',
     data () {
         return {
 
