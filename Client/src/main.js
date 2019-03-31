@@ -6,6 +6,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css'
 import router from './router'
+import http from './http'
 import MyContainer from '@/components/layout-components/My-Container'
 import MyRow from '@/components/layout-components/My-Row'
 import MyHeader from '@/components/base-components/My-Header'
@@ -23,11 +24,9 @@ import MySteps from '@/components/base-components/My-Steps'
 import MyPagination from '@/components/base-components/My-Pagination'
 // 引入自定义的全局样式文件
 import './assets/styles/global.css'
-// 引入axios
-import axios from 'axios'
-
 
 Vue.config.productionTip = false
+Vue.prototype.$http = http
 
 // 注册全局组件
 Vue.component('my-container', MyContainer)
@@ -58,9 +57,6 @@ Vue.filter('formateStr', function(str, number){
 
 // 引入element-ui组件库
 Vue.use(ElementUI)
-
-// 配置axios
-Vue.prototype.$axios = axios
 
 /* eslint-disable no-new */
 new Vue({
