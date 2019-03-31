@@ -58,28 +58,29 @@ router.post('/student', (req, res) => {
     });
 });
 
-// 修改指定id学生的密码
-router.post('/student/:id', (req, res) => {
-    let sql = $sql.update_password;
-    connection.query(sql, [ req.body.password, req.params['id'] ], (err, result) => {
-        if(err) {
-            res.json(formateResult(500, '修改指定id学生的密码失败了：' + err));
-        }else {
-            res.json(formateResult(200, '修改指定id学生的密码成功了！', result));
-        }
-    });
-});
-
-// 根据id更新学生信息
 router.put('/student/:id', (req, res) => {
-    let sql = $sql.update_by_id;
-    connection.query(sql, [ req.body.username, req.body.realname, req.body.password, req.body.school, req.body.college, req.body.major, req.params['id'] ], (err, result) => {
-        if(err) {
-            res.json(formateResult(500, '根据id更新学生信息失败了：' + err));
-        }else {
-            res.json(formateResult(200, '根据id更新学生信息成功了！', result));
-        }
-    });
+    let sql_1 = $sql.update_password;
+    let sql_2 = $sql.update_by_id;
+    if(req.body.username) {
+        // 根据id更新学生信息
+        connection.query(sql_2, [ req.body.username, req.body.realname, req.body.password, req.body.school, req.body.college, req.body.major, req.params['id'] ], (err, result) => {
+            if(err) {
+                res.json(formateResult(500, '根据id更新学生信息失败了：' + err));
+            }else {
+                res.json(formateResult(200, '根据id更新学生信息成功了！', result));
+            }
+        });
+    }else {
+        // 修改指定id学生的密码
+        connection.query(sql_1, [ req.body.password, req.params['id'] ], (err, result) => {
+            if(err) {
+                res.json(formateResult(500, '修改指定id学生的密码失败了：' + err));
+            }else {
+                res.json(formateResult(200, '修改指定id学生的密码成功了！', result));
+            }
+        });
+    }
+   
 });
 
 // 根据id删除学生信息
