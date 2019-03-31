@@ -6,21 +6,6 @@
             <my-inner-nav :navs="innerNavs"></my-inner-nav>
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <!-- <el-menu mode="vertical" default-active="1" router 
-                            background-color="#408FFF"
-                            text-color="#fff"
-                            active-text-color="#aabbaa">
-                        <el-submenu v-for="(submenus, index) in menus"
-                            :index="submenus.path"
-                            :key="index">
-                            <template slot="title">{{ submenus.menus }}</template>
-                            <el-menu-item v-for="(item, subIndex) in submenus.submenus"
-                                :index="item.path" :key="subIndex">
-                                    {{ item.title }}
-                            </el-menu-item>
-                        </el-submenu>
-                    </el-menu> -->
-
                     <el-menu mode="vertical" default-active="1" router
                             background-color="#408FFF"
                             text-color="#fff"
@@ -46,8 +31,6 @@
                             <span>{{ menus[4].menus }}</span>
                         </el-menu-item>
                     </el-menu>
-                    
-                    
                 </el-col>
                 <el-col :span="18">
                     <router-view></router-view>
@@ -112,7 +95,7 @@ export default {
                 },
                 {
                     menus: '查看企业',
-                    path: '/student/look-company',
+                    path: '/student/see-company',
                     submenus: []
                 },
                 {

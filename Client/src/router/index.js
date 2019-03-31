@@ -19,6 +19,10 @@ import PolicymentDetail from '@/components/built-components/employment-informati
 import Login from '@/components/built-components/login/Login'
 import Register from '@/components/built-components/register/Register'
 import Student from '@/components/built-components/login/student/Student'
+import SeeCompany from '@/components/built-components/login/student/See-Company'
+import UpdatePassword from '@/components/built-components/login/student/Update-Password'
+import Logout from '@/components/built-components/login/student/Logout'
+import Message from '@/components/built-components/login/student/Message'
 import Company from '@/components/built-components/login/company/Company'
 import Administrator from '@/components/built-components/login/administrator/Administrator'
 import Create from '@/components/built-components/login/student/profile/Create'
@@ -121,30 +125,50 @@ export default new Router({
     },
     // 学生部分路由
     {
-      path: '/student/:id',
+      path: '/student',
       name: 'student',
       component: Student,
       children: [
+        {
+          path: 'update-password',
+          name: 'update-password',
+          component: UpdatePassword
+        },
         {
           path: 'create-profile',
           name: 'create-profile',
           component: Create
         },
         {
-          path: 'Delete-profile',
-          name: 'Delete-profile',
+          path: 'delete-profile',
+          name: 'delete-profile',
           component: Delete
         },
         {
-          path: 'See-profile',
-          name: 'See-profile',
+          path: 'see-profile',
+          name: 'see-profile',
           component: See
         },
         {
-          path: 'Update-profile',
-          name: 'Update-profile',
+          path: 'update-profile',
+          name: 'update-profile',
           component: Update
         },
+        {
+          path: 'logout',
+          name: 'logout',
+          component: Logout
+        },
+        {
+          path: 'see-company',
+          name: 'see-company',
+          component: SeeCompany
+        },
+        {
+          path: 'message',
+          name: 'message',
+          component: Message
+        }
       ]
     },
     // 企业部分路由
