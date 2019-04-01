@@ -25,6 +25,10 @@ import MyPagination from '@/components/base-components/My-Pagination'
 // 引入自定义的全局样式文件
 import './assets/styles/global.css'
 
+// 引入日期转换格式的插件 moment.js
+import Moment from 'moment'
+Moment.locale('zh-cn')
+
 Vue.config.productionTip = false
 Vue.prototype.$http = http
 
@@ -53,6 +57,15 @@ Vue.filter('formateStr', function(str, number){
   }else{
     return str;
   }
+})
+
+// 转换日期格式为2018-9-11
+Vue.filter('formatTime', function (rawTime) {
+  return Moment(rawTime).format('YYYY-MM-DD')
+})
+// 计算指定时间与当前时间的时间差
+Vue.filter('relativeTime', function (beforeTime) {
+  return Moment(beforeTime).fromNow()
 })
 
 // 引入element-ui组件库

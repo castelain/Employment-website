@@ -1,6 +1,6 @@
 <template>
     <div>
-        NotificationManage
+        
     </div>
 </template>
 
