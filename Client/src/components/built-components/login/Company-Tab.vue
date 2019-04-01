@@ -1,7 +1,7 @@
 <template>
     <el-form :model="form" ref="form" :rules="rules">
-        <el-form-item prop="name">
-        <el-input v-model="form.name" placeholder="公司名称"></el-input>
+        <el-form-item prop="username">
+        <el-input v-model="form.username" placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item prop="password">
             <el-input v-model="form.password" placeholder="密码" show-password></el-input>
@@ -29,13 +29,13 @@ export default {
     data() {
     return {
       form: {
-        name: null,
+        username: null,
         password: null,
         rememberPassword: null
       },
       // 表单验证规则
       rules: {
-        name: [
+        username: [
           { required: true, message: "请输入公司名称", trigger: "blur" },
         ], 
         password: [
@@ -49,30 +49,44 @@ export default {
         this.$refs['form'].validate((valid) => {
           if(valid) {
             if(this.form.rememberPassword){
+              localStorage.setItem('username', this.form.username);
               localStorage.setItem('password', this.form.password);
             }
-            localStorage.setItem('id', 1);
-            localStorage.setItem('type', 1);
-            localStorage.setItem('name', this.form.name);
-            localStorage.setItem('isLogined', true);
-            this.$router.push('/');
+            let data = {
+              username: this.form.username,
+              password: this.form.password
+            };
+            this.$http.post('/api/company', data)
+                .then((response) => {
+                    localStorage.setItem('id', response[0].id);
+                    localStorage.setItem('username', response[0].username);
+                    localStorage.setItem('token', response[0].token);
+                    localStorage.setItem('type', 1);
+                    this.$router.push('/');
+                })
+                .catch((error => {
+                  this.$message({
+                    type: 'error',
+                    message: '登录失败，请检查用户名密码后重试！'
+                  });
+                }));
           }else{
             this.$message({
               type: 'error',
               message: '提交表单失败：表单填写尚存在错误'
-            })
+            });
           }
-        })
+        });
     },
   },
   mounted() {
-    let name = localStorage.getItem('name')
+    let username = localStorage.getItem('username')
     let password = localStorage.getItem('password');
-    if(name && password){
-      this.form.name = name;
+    if(username && password){
+      this.form.username = username;
       this.form.password = password;
     }
-  },
+  }
 }
 </script>
 

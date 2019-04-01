@@ -46,6 +46,7 @@ router.get('/student/:id', (req, res) => {
             res.json(formateResult(500, '获取指定id的学生信息失败了：' + err));
         }else {
             res.json(formateResult(200, '获取指定id的学生信息成功了！', result));
+            // res.json(result);
         }
     });
 });
@@ -53,7 +54,6 @@ router.get('/student/:id', (req, res) => {
 router.post('/student', (req, res) => {
     let sql_1 = $sql.add_item;
     let sql_2 = $sql.search_item;
-    // console.log(req.body);
     if(req.body.realname) {
         // 新增一条学生信息
         connection.query(sql_1, [ req.body.username, req.body.realname, req.body.password, req.body.school, req.body.college, req.body.major ], (err, result) => {
@@ -62,9 +62,9 @@ router.post('/student', (req, res) => {
             }else {
                 // 签发token
                 let token = createToken(req);
-                result.token = token;
-                res.json(formateResult(200, '新增一条学生信息成功了！', result));
-                // res.json(result);
+                result[0].token = token;
+                // res.json(formateResult(200, '新增一条学生信息成功了！', result));
+                res.json(result);
             }
         });
     }else {
@@ -75,7 +75,11 @@ router.post('/student', (req, res) => {
             }else {
                 if(result.length >=1 ) {
                     // console.log(result);
-                    res.json(formateResult(200, '根据用户名，密码，查找学生信息成功了！', result));
+                    // 签发token
+                    let token = createToken(req);
+                    result[0].token = token;
+                    // res.json(formateResult(200, '根据用户名，密码，查找学生信息成功了！', result));
+                    res.json(result);
                 }else {
                     res.json(formateResult(500, '根据用户名，密码，查找学生信息失败了，该用户不存在!'));
                 }

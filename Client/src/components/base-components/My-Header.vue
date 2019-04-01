@@ -86,11 +86,11 @@ export default {
         // 根据是否登录，来更改导航
         if(localStorage.getItem('type')){
             if(localStorage.getItem('type') == 0){
-                this.navItems[4] =  { msg: localStorage.getItem('username'), src: '/student/' + localStorage.getItem('id'), subItems: [] };
+                this.navItems[4] =  { msg: localStorage.getItem('username'), src: '/student/update-password', subItems: [] };
             }else if(localStorage.getItem('type') == 1){
-                this.navItems[4] = { msg: localStorage.getItem('username'), src: '/company/' + localStorage.getItem('id'), subItems: [] };
+                this.navItems[4] = { msg: localStorage.getItem('username'), src: '/company/information', subItems: [] };
             }else if(localStorage.getItem('type') == 2){
-                this.navItems[4] = { msg: localStorage.getItem('username'), src: '/administrator/' + localStorage.getItem('id'), subItems: [] };
+                this.navItems[4] = { msg: localStorage.getItem('username'), src: '/administrator/student-manage', subItems: [] };
             }
         }
     },

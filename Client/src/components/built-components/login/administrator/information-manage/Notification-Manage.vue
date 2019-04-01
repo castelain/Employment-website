@@ -1,12 +1,12 @@
 <template>
     <div>
-        Message
+        NotificationManage
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Message',
+    name: 'NotificationManage',
     data () {
         return {
 

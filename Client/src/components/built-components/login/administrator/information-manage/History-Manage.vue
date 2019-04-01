@@ -1,12 +1,12 @@
 <template>
     <div>
-        Message
+        HistoryManage
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Message',
+    name: 'HistoryManage',
     data () {
         return {
 

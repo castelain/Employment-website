@@ -1,6 +1,10 @@
 <template>
     <div>
         <el-form :model="form" ref="form" :rules="rules">
+            <el-form-item prop="username">
+                <el-input v-model="form.username" placeholder="用户名"></el-input>
+            </el-form-item>
+
             <el-form-item prop="name">
                 <el-input v-model="form.name" placeholder="公司名称"></el-input>
             </el-form-item>
@@ -33,20 +37,16 @@
                 <el-input v-model="form.address" placeholder="联系地址"></el-input>
             </el-form-item>
 
-            <el-form-item prop="homepage">
-                <el-input v-model="form.homepage" placeholder="公司主页"></el-input>
-            </el-form-item>
-
             <el-form-item prop="email">
                 <el-input v-model="form.email" placeholder="联系邮箱"></el-input>
             </el-form-item>
 
-            <el-form-item prop="linkMan">
-                <el-input v-model="form.linkMan" placeholder="联系人"></el-input>
+            <el-form-item prop="link_man">
+                <el-input v-model="form.link_man" placeholder="联系人"></el-input>
             </el-form-item>
 
-            <el-form-item prop="linkManTel">
-                <el-input v-model="form.linkManTel" placeholder="联系人电话"></el-input>
+            <el-form-item prop="link_man_tel">
+                <el-input v-model="form.link_man_tel" placeholder="联系人电话"></el-input>
             </el-form-item>
 
             <el-form-item prop="password">
@@ -80,14 +80,14 @@ export default {
     data () {
         return {
             form: {
+                username: null,
                 name: null,
                 kind: [],
                 address: null,
-                homepage: null,
                 scale: null,
                 email: null,
-                linkMan: null,
-                linkManTel: null,
+                link_man: null,
+                link_man_tel: null,
                 password: null,
                 password2: null,
                 isAgree: false,
@@ -138,24 +138,27 @@ export default {
             ],
         // 表单验证规则
             rules: {
+                username: [
+                    { required: true, message: "请输入用户名", trigger: "blur" },
+                ],
                 name: [
                     { required: true, message: "请输入公司名称", trigger: "blur" },
                 ],
                 address: [
                     { required: true, message: "请输入联系地址", trigger: "blur" },
                 ],
-                homepage: [
-                    { required: true, message: "请输入公司主页的网址", trigger: "blur" },
-                    { pattern: /(https?|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/, message: "请输入正确的公司主页网址", trigger: "blur" }
-                ],
+                // homepage: [
+                //     { required: true, message: "请输入公司主页的网址", trigger: "blur" },
+                //     { pattern: /(https?|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/, message: "请输入正确的公司主页网址", trigger: "blur" }
+                // ],
                 email: [
                     { required: true, message: "请输入联系邮箱", trigger: "blur" },
                     { pattern: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, message: "请输入正确的邮箱", trigger: "blur" }
                 ],
-                linkMan: [
+                link_man: [
                     { required: true, message: "请输入联系人姓名", trigger: "blur" },
                 ],
-                linkManTel: [
+                link_man_tel: [
                     { required: true, message: "请输入联系人电话", trigger: "blur" },
                     { pattern: /^1[34578]\d{9}$/, message: "请输入正确的电话号码", trigger: "blur" }
                 ],
@@ -179,7 +182,17 @@ export default {
                 this.$refs['form'].validate((valid) => {
                     if(valid) {
                         if(this.form.password === this.form.password2){
-                            this.$router.push('/login');
+                            this.$http.post('/api/company', this.form)
+                                .then((response) => {
+                                    localStorage.setItem('token', response.token);
+                                    this.$router.push('/login');
+                                })
+                                .catch((error) => {
+                                    this.$message({
+                                        type: 'error',
+                                        message: '注册信息提交失败！'
+                                    });
+                                });
                         }else{
                             this.$message({
                                 type: 'error',
@@ -195,7 +208,7 @@ export default {
                 });
             }
         },
-  }
+    }
 }
 </script>
 

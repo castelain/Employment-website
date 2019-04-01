@@ -1,12 +1,12 @@
 <template>
     <div>
-        Message
+        UpdatePasswordAdmin
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Message',
+    name: 'UpdatePasswordAdmin',
     data () {
         return {
 

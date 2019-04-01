@@ -1,12 +1,12 @@
 <template>
     <div>
-        Message
+        PolicyManage
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Message',
+    name: 'PolicyManage',
     data () {
         return {
 

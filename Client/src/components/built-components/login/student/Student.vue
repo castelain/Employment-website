@@ -6,7 +6,7 @@
             <my-inner-nav :navs="innerNavs"></my-inner-nav>
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <el-menu mode="vertical" default-active="1" router
+                    <el-menu mode="vertical" :default-active="menus[0].path" router
                             background-color="#408FFF"
                             text-color="#fff"
                             active-text-color="#aabbaa">
@@ -27,7 +27,7 @@
                         <el-menu-item :index="menus[3].path">
                             <span>{{ menus[3].menus }}</span>
                         </el-menu-item>
-                        <el-menu-item :index="menus[4].path">
+                        <el-menu-item :index="menus[4].path" @click="logout">
                             <span>{{ menus[4].menus }}</span>
                         </el-menu-item>
                     </el-menu>
@@ -90,7 +90,7 @@ export default {
                 },
                 {
                     menus: '我的消息',
-                    path: '/student/my-message',
+                    path: '/student/student-message',
                     submenus: []
                 },
                 {
@@ -102,8 +102,14 @@ export default {
                     menus: '退出登录',
                     path: '/student/logout',
                     submenus: []
-                },
+                }
             ]
+        }
+    },
+    methods: {
+        logout: function() {
+            localStorage.clear();
+            this.$router.push('/');
         }
     },
     mounted() {

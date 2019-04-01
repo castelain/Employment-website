@@ -97,7 +97,6 @@ export default {
                                         type: 'error',
                                         message: '注册信息提交失败！'
                                     });
-                                    console.log(error);
                                 });
                         }else{
                             this.$message({

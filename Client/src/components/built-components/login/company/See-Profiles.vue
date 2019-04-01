@@ -1,12 +1,12 @@
 <template>
     <div>
-        Message
+        SeeProfile
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Message',
+    name: 'SeeProfile',
     data () {
         return {
 

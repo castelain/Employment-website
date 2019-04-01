@@ -1,12 +1,12 @@
 <template>
     <div>
-        Update
+        AssessmentManage
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Logout',
+    name: 'AssessmentManage',
     data () {
         return {
 

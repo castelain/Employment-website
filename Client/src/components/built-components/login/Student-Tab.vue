@@ -58,8 +58,9 @@ export default {
             };
             this.$http.post('/api/student', data)
                 .then((response) => {
-                    localStorage.setItem('id', this.form.id);
-                    localStorage.setItem('username', this.form.username);
+                    localStorage.setItem('id', response[0].id);
+                    localStorage.setItem('username', response[0].username);
+                    localStorage.setItem('token', response[0].token);
                     localStorage.setItem('type', 0);
                     this.$router.push('/');
                 })
@@ -69,7 +70,6 @@ export default {
                     message: '登录失败，请检查用户名密码后重试！'
                   });
                 }));
-            
           }else{
             this.$message({
               type: 'error',
@@ -86,7 +86,7 @@ export default {
       this.form.username = username;
       this.form.password = password;
     }
-  },
+  }
 }
 </script>
 

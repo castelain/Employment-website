@@ -21,10 +21,22 @@ import Register from '@/components/built-components/register/Register'
 import Student from '@/components/built-components/login/student/Student'
 import SeeCompany from '@/components/built-components/login/student/See-Company'
 import UpdatePassword from '@/components/built-components/login/student/Update-Password'
-import Logout from '@/components/built-components/login/student/Logout'
 import Message from '@/components/built-components/login/student/Message'
 import Company from '@/components/built-components/login/company/Company'
+import CompanyInformation from '@/components/built-components/login/company/Information'
+import CompanyMessage from '@/components/built-components/login/company/Message'
+import SeeProfiles from '@/components/built-components/login/company/See-Profiles'
+import Seminars from '@/components/built-components/login/company/Seminars'
 import Administrator from '@/components/built-components/login/administrator/Administrator'
+import StudentManage from '@/components/built-components/login/administrator/Student-Manage'
+import UpdatePasswordAdmin from '@/components/built-components/login/administrator/Update-Password-Admin'
+import CompanyManage from '@/components/built-components/login/administrator/company-manage/Company-Manage'
+import SeminarManage from '@/components/built-components/login/administrator/company-manage/Seminar-Manage'
+import AssessmentManage from '@/components/built-components/login/administrator/information-manage/Assessment-Manage'
+import CollegeManage from '@/components/built-components/login/administrator/information-manage/College-Manage'
+import HistoryManage from '@/components/built-components/login/administrator/information-manage/History-Manage'
+import NotificationManage from '@/components/built-components/login/administrator/information-manage/Notification-Manage'
+import PolicyManage from '@/components/built-components/login/administrator/information-manage/Policy-Manage'
 import Create from '@/components/built-components/login/student/profile/Create'
 import Delete from '@/components/built-components/login/student/profile/Delete'
 import See from '@/components/built-components/login/student/profile/See'
@@ -155,33 +167,97 @@ export default new Router({
           component: Update
         },
         {
-          path: 'logout',
-          name: 'logout',
-          component: Logout
-        },
-        {
           path: 'see-company',
           name: 'see-company',
           component: SeeCompany
         },
         {
           path: 'message',
-          name: 'message',
+          name: 'student-message',
           component: Message
         }
       ]
     },
     // 企业部分路由
     {
-      path: '/company/:id',
+      path: '/company',
       name: 'company',
-      component: Company
+      component: Company,
+      children: [
+        {
+          path: 'information',
+          name: 'information',
+          component: CompanyInformation
+        },
+        {
+          path: 'see-profiles',
+          name: 'see-profiles',
+          component: SeeProfiles
+        },
+        {
+          path: 'seminars',
+          name: 'seminars',
+          component: Seminars
+        },
+        {
+          path: 'company-message',
+          name: 'company-message',
+          component: CompanyMessage
+        }
+      ]
     },
     // 管理员部分路由
     {
-      path: '/administrator/:id',
+      path: '/administrator',
       name: 'administrator',
-      component: Administrator
+      component: Administrator,
+      children: [
+        {
+          path: 'student-manage',
+          name: 'student-manage',
+          component: StudentManage
+        },
+        {
+          path: 'company-manage',
+          name: 'company-manage',
+          component: CompanyManage
+        },
+        {
+          path: 'seminar-manage',
+          name: 'seminar-manage',
+          component: SeminarManage
+        },
+        {
+          path: 'notification-manage',
+          name: 'notification-manage',
+          component: NotificationManage
+        },
+        {
+          path: 'history-manage',
+          name: 'history-manage',
+          component: HistoryManage
+        },
+        {
+          path: 'college-manage',
+          name: 'college-manage',
+          component: CollegeManage
+        },
+        {
+          path: 'policy-manage',
+          name: 'policy-manage',
+          component: PolicyManage
+        },
+        {
+          path: 'assessment-manage',
+          name: 'assessment-manage',
+          component: AssessmentManage
+        },
+        {
+          path: 'update-password-admin',
+          name: 'update-password-admin',
+          component: UpdatePasswordAdmin
+        }
+      ]
     },
     {
       path: '*',

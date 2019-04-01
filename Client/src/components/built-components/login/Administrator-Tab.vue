@@ -1,7 +1,7 @@
 <template>
     <el-form :model="form" ref="form" :rules="rules">
-        <el-form-item prop="nickname">
-        <el-input v-model="form.nickname" placeholder="昵称"></el-input>
+        <el-form-item prop="username">
+        <el-input v-model="form.username" placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item prop="password">
             <el-input v-model="form.password" placeholder="密码" show-password></el-input>
@@ -29,14 +29,14 @@ export default {
     data() {
     return {
       form: {
-        nickname: null,
+        username: null,
         password: null,
         rememberPassword: null
       },
       // 表单验证规则
       rules: {
-        nickname: [
-          { required: true, message: "请输入昵称", trigger: "blur" },
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
         ], 
         password: [
           { required: true, message: "密码不可为空", trigger: "blur" }
@@ -49,13 +49,27 @@ export default {
         this.$refs['form'].validate((valid) => {
           if(valid) {
             if(this.form.rememberPassword){
+              localStorage.setItem('username', this.form.username);
               localStorage.setItem('password', this.form.password);
             }
-            localStorage.setItem('id', 1);
-            localStorage.setItem('type', 2);
-            localStorage.setItem('nickname', this.form.nickname);
-            localStorage.setItem('isLogined', true);
-            this.$router.push('/');
+            let data = {
+              username: this.form.username,
+              password: this.form.password
+            };
+            this.$http.post('/api/administrator', data)
+                .then((response) => {
+                    localStorage.setItem('id', response[0].id);
+                    localStorage.setItem('username', response[0].username);
+                    localStorage.setItem('token', response[0].token);
+                    localStorage.setItem('type', 2);
+                    this.$router.push('/');
+                })
+                .catch((error => {
+                  this.$message({
+                    type: 'error',
+                    message: '登录失败，请检查用户名密码后重试！'
+                  });
+                }));
           }else{
             this.$message({
               type: 'error',
@@ -66,10 +80,10 @@ export default {
     },
   },
   mounted() {
-    let nickname = localStorage.getItem('nickname')
+    let username = localStorage.getItem('username')
     let password = localStorage.getItem('password');
-    if(nickname && password){
-      this.form.nickname = nickname;
+    if(username && password){
+      this.form.username = username;
       this.form.password = password;
     }
   },
