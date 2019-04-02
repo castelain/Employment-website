@@ -60,10 +60,23 @@
                 label="操作"
                 width="80">
             <template slot-scope="scope">
-                <el-button type="primary" @click="message(scope.row)" plain size="small">留言</el-button>
+                <el-button type="primary" @click="send(scope.row)" plain size="small">留言</el-button>
             </template>
             </el-table-column>
         </el-table>
+
+        <!-- 回复留言的弹出框 -->
+        <el-dialog title="编辑回复留言" :visible.sync="formVisible">
+            <el-form :model="messageForm">
+                <el-form-item label="回复内容">
+                    <el-input v-model="messageForm.message" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="formVisible = false">取 消</el-button>
+                <el-button type="primary" @click="sendMessage">确 定</el-button>
+            </div>
+        </el-dialog>
 
         <my-pagination :setting="setting" @current-change="handleCurrentChange"></my-pagination>
     </div>
@@ -86,13 +99,16 @@ export default {
             // 搜索表单
             form: {
                 keyword: ''
+            },
+            formVisible: false,
+            messageForm: {
+                student_id: null,
+                company_id: null,
+                message: '',
             }
         }
     },
     methods: {
-        seeProfile: function(row) {
-            
-        },
         handleCurrentChange: function(val) {
             if(val === 1) {
                 this.companies = this.temp.slice(0, this.setting.pageSize);;
@@ -100,21 +116,33 @@ export default {
                 this.companies = this.temp.slice( this.setting.pageSize*(val-1) );
             }
         },
-        message: function(row) {
-            this.$http.delete('/api/company/' + row.id)
-                .then(response => {
-                    this.$message({
-                        type: 'success',
-                        message: '删除企业信息成功了！'
+        send: function (row) {
+            this.form.student_id = localStorage.getItem('id');
+            this.form.company_id = row.id;
+            this.formVisible = true;
+        },
+        sendMessage: function (row) {
+            if(this.messageForm.message === '') {
+                this.$message({
+                    type: 'error',
+                    message: '留言信息不可为空！'
+                });
+            }else {
+                this.$http.post('/api//student_company/to_company', this.form)
+                    .then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: '向企业留言成功了！'
+                        });
+                        this.formVisible = false;
+                    })
+                    .catch(error => {
+                        this.$message({
+                            type: 'error',
+                            message: '向企业留言失败了！'+ error.msg
+                        });
                     });
-                    location.reload();
-                })
-                .catch(error => {
-                    this.$message({
-                        type: 'error',
-                        message: '删除企业信息失败了！'+ error.msg
-                    });
-                })
+            }
         },
         search: function () {
             if(this.form.keyword == '') {

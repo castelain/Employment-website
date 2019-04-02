@@ -54,7 +54,7 @@ export default {
                     path: '/company/information',
                 },
                 {
-                    menus: '查看学生简历',
+                    menus: '查看学生',
                     path: '/company/see-profiles',
                 },
                 {

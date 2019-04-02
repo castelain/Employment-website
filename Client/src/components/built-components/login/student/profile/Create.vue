@@ -138,7 +138,7 @@
                 </el-form-item>
             </el-form>
         </div>
-        <div v-else>
+        <div v-else style="margin: 20% auto;">
             <h3>每个用户只能创建一份简历哦！</h3>
         </div>
     </div>

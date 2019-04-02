@@ -75,7 +75,20 @@ export default {
     },
     methods: {
         seeProfile: function(row) {
-            
+            this.$http.get('/api/resume/get-id/' + row.id)
+                .then(response => {
+                    if(response.length === 0) {
+                        this.$message({
+                            type: 'primary',
+                            message: '该学生尚未创建简历！'
+                        });
+                    }else {
+                        this.$router.push({ path: '/visit-resume/' + response[0].id });
+                    }
+                })
+                .catch(error => {
+                    console.log('获取简历id失败了！' + error);
+                });
         },
         handleCurrentChange: function(val) {
             if(val === 1) {

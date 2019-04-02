@@ -41,6 +41,7 @@ import Create from '@/components/built-components/login/student/profile/Create'
 import Delete from '@/components/built-components/login/student/profile/Delete'
 import See from '@/components/built-components/login/student/profile/See'
 import Update from '@/components/built-components/login/student/profile/Update'
+import ProfileDetail_1 from '@/components/built-components/login/Profile-Detail'
 
 Vue.use(Router)
 
@@ -134,6 +135,11 @@ export default new Router({
       path: '/notification-detail/:id',
       name: 'notification-detail',
       component: NotificationDetail
+    },
+    {
+      path: '/visit-resume/:id',
+      name: 'visit-resume',
+      component: ProfileDetail_1
     },
     // 学生部分路由
     {

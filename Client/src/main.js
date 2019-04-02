@@ -68,6 +68,28 @@ Vue.filter('relativeTime', function (beforeTime) {
   return Moment(beforeTime).fromNow()
 })
 
+// 性别数值到字符串的转换
+Vue.filter('formatSex', function(sex){
+  if(sex === 0) {
+    return '男';
+  }else if(sex === 1) {
+    return '女';
+  }else if(sex === 2) {
+    return '保密';
+  }
+})
+
+// 政治状态值到字符串的转换
+Vue.filter('formatPoliticalStatus', function(status){
+  if(status === 0) {
+    return '已婚';
+  }else if(status === 1) {
+    return '未婚';
+  }else if(status === 2) {
+    return '保密';
+  }
+})
+
 // 定义全局函数
 // 转换日期格式为2018-9-11
 Vue.prototype.formatTime = function(rawTime) {

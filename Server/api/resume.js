@@ -22,6 +22,18 @@ router.get('/resume', (req, res) => {
     
 });
 
+// 获取指定student_id的简历的id
+router.get('/resume/get-id/:student_id', (req, res) => {
+    let sql = $sql.select_userId;
+    connection.query(sql, [ req.params.student_id ], (err, result) => {
+        if(err) {
+            res.json(formateResult(500, '获取指定student_id的简历的id：' + err));
+        }else {
+            res.json(result);
+        }
+    });
+});
+
 // 获取指定id的简历
 router.get('/resume/:id', (req, res) => {
     let sql = $sql.select_by_id;

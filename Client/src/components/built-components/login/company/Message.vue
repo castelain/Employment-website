@@ -91,20 +91,27 @@ export default {
             this.formVisible = true;
         },
         sendMessage: function (row) {
-            this.$http.post('/api//student_company/to_student', this.form)
-                .then(response => {
-                    this.$message({
-                        type: 'success',
-                        message: '回复学生留言成功了！'
-                    });
-                    this.formVisible = false;
-                })
-                .catch(error => {
-                    this.$message({
-                        type: 'error',
-                        message: '回复学生留言失败了！'+ error.msg
-                    });
+            if(this.messageForm.message === '') {
+                this.$message({
+                    type: 'error',
+                    message: '留言信息不可为空！'
                 });
+            }else {
+                this.$http.post('/api/student_company/to_student', this.form)
+                    .then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: '回复学生留言成功了！'
+                        });
+                        this.formVisible = false;
+                    })
+                    .catch(error => {
+                        this.$message({
+                            type: 'error',
+                            message: '回复学生留言失败了！'+ error.msg
+                        });
+                    });
+            }
         },
         deleteItem: function(row) {
             this.$http.delete('/api/student_company/' + row.id)
@@ -160,7 +167,7 @@ export default {
   .demo-table-expand .el-form-item {
     /* margin-right: 0; */
     margin-bottom: 0;
-    width: 50%;
+    width: 80%;
   }
 </style>
 

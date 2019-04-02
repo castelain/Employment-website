@@ -1,141 +1,146 @@
 <template>
     <div>
-        <my-title title="更新简历" class="title"></my-title>
-        <el-form :model="form" label-width="100px" style="margin-top: 10%;" ref="form" :rules="rules">
-            <el-form-item label="邮箱" prop="email">
-                <el-input v-model="form.email"></el-input>
-            </el-form-item>
-            <el-form-item label="电话号码" prop="telephone">
-                <el-input v-model="form.telephone"></el-input>
-            </el-form-item>
-            <el-row>
-                <el-col :span="12" prop="sex">
-                    <el-form-item label="性别" class="left" prop="sex">
-                        <el-select v-model="form.sex" placeholder="请选择">
-                            <el-option
-                            v-for="item in sexOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                    <el-form-item label="民族" class="right" prop="nationality">
-                        <el-select v-model="form.nationality" placeholder="请选择">
-                            <el-option
-                            v-for="item in nationalityOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-col>
-            </el-row>
-            <el-row>
-                <el-col :span="12">
-                    <el-form-item label="婚姻状态" class="left" prop="marry_status">
-                        <el-select v-model="form.marry_status" placeholder="请选择">
-                            <el-option
-                            v-for="item in marryOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                    <el-form-item label="政治面貌" class="right" prop="political_status">
-                        <el-select v-model="form.political_status" placeholder="请选择">
-                            <el-option
-                            v-for="item in politicalOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-col>
-            </el-row>
-            <el-form-item label="出生日期" prop="birthday">
-                <el-date-picker type="date"
-                    placeholder="选择日期" 
-                    v-model="form.birthday" 
-                    style="width: 100%;"
-                    format="yyyy 年 MM 月 dd 日"
-                    value-format="timestamp">
-                </el-date-picker>
-            </el-form-item>
-            <el-form-item label="当前住址" prop="address">
-                <el-input v-model="form.address"></el-input>
-            </el-form-item>
-            <el-form-item label="期望工作">
-                <el-input
-                    type="textarea"
-                    :autosize="{ minRows: 2, maxRows: 4}"
-                    placeholder="请输入内容"
-                    v-model="form.will_jobs">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="期望工作地点">
-                <el-input
-                    type="textarea"
-                    :autosize="{ minRows: 2, maxRows: 4}"
-                    placeholder="请输入内容"
-                    v-model="form.will_spots">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="期望薪资">
-                <el-select v-model="form.will_salary" placeholder="请选择" class="left">
-                    <el-option
-                    v-for="item in salaryOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-                    </el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item label="个人技能">
-                <el-input
-                    type="textarea"
-                    :autosize="{ minRows: 2, maxRows: 4}"
-                    placeholder="请输入内容"
-                    v-model="form.skills">
-                </el-input>
-            </el-form-item>
-             <el-form-item label="获得荣耀">
-                <el-input
-                    type="textarea"
-                    :autosize="{ minRows: 2, maxRows: 4}"
-                    placeholder="请输入内容"
-                    v-model="form.awards">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="工作/实习经历">
-                <el-input
-                    type="textarea"
-                    :autosize="{ minRows: 2, maxRows: 4}"
-                    placeholder="请输入内容"
-                    v-model="form.experiences">
-                </el-input>
-            </el-form-item>
-             <el-form-item label="自我评价">
-                <el-input
-                    type="textarea"
-                    :autosize="{ minRows: 2, maxRows: 4}"
-                    placeholder="请输入内容"
-                    v-model="form.introduction">
-                </el-input>
-            </el-form-item>
+        <div v-if="hasResume">
+            <my-title title="更新简历" class="title"></my-title>
+            <el-form :model="form" label-width="100px" style="margin-top: 10%;" ref="form" :rules="rules">
+                <el-form-item label="邮箱" prop="email">
+                    <el-input v-model="form.email"></el-input>
+                </el-form-item>
+                <el-form-item label="电话号码" prop="telephone">
+                    <el-input v-model="form.telephone"></el-input>
+                </el-form-item>
+                <el-row>
+                    <el-col :span="12" prop="sex">
+                        <el-form-item label="性别" class="left" prop="sex">
+                            <el-select v-model="form.sex" placeholder="请选择">
+                                <el-option
+                                v-for="item in sexOptions"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="民族" class="right" prop="nationality">
+                            <el-select v-model="form.nationality" placeholder="请选择">
+                                <el-option
+                                v-for="item in nationalityOptions"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="婚姻状态" class="left" prop="marry_status">
+                            <el-select v-model="form.marry_status" placeholder="请选择">
+                                <el-option
+                                v-for="item in marryOptions"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="政治面貌" class="right" prop="political_status">
+                            <el-select v-model="form.political_status" placeholder="请选择">
+                                <el-option
+                                v-for="item in politicalOptions"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-form-item label="出生日期" prop="birthday">
+                    <el-date-picker type="date"
+                        placeholder="选择日期" 
+                        v-model="form.birthday" 
+                        style="width: 100%;"
+                        format="yyyy 年 MM 月 dd 日"
+                        value-format="timestamp">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label="当前住址" prop="address">
+                    <el-input v-model="form.address"></el-input>
+                </el-form-item>
+                <el-form-item label="期望工作">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="form.will_jobs">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="期望工作地点">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="form.will_spots">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="期望薪资">
+                    <el-select v-model="form.will_salary" placeholder="请选择" class="left">
+                        <el-option
+                        v-for="item in salaryOptions"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="个人技能">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="form.skills">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="获得荣耀">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="form.awards">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="工作/实习经历">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="form.experiences">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="自我评价">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="form.introduction">
+                    </el-input>
+                </el-form-item>
 
-           
-            <el-form-item>
-                <el-button type="primary" @click="submit(form)">提交</el-button>
-            </el-form-item>
-        </el-form>
+            
+                <el-form-item>
+                    <el-button type="primary" @click="submit(form)">提交</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+        <div v-else style="margin: 20% auto;">
+            <h3>你还没有简历，快去创建一个吧！</h3>
+        </div>
     </div>
 </template>
 
@@ -144,6 +149,8 @@ export default {
     name: 'Update',
     data () {
         return {
+            // 标识是否已经创建了简历
+            hasResume: true,
             form: {
                 student_id: localStorage.getItem('id'),
                 email: '',
@@ -671,13 +678,18 @@ export default {
         }
     },
     created() {
-        this.$http.get('/api/resume/' + localStorage.getItem('resume_id'))
+        if(localStorage.getItem('resume_id')) {
+            this.hasResume = true;
+                    this.$http.get('/api/resume/' + localStorage.getItem('resume_id'))
             .then(response => {
                 this.form = response[0];
             })
             .catch(error => {
                 console.log('预设简历表单失败了！' + error);
             })
+        }else {
+            this.hasResume = false;
+        }
     },
 }
 </script>
