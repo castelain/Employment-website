@@ -15,7 +15,8 @@ router.get('/resume', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取简历的列表失败了：' + err))
         }else {
-            res.json(formateResult(200, '获取简历的列表成功了！', result));
+            // res.json(formateResult(200, '获取简历的列表成功了！', result));
+            res.json(result);
         }
     });
     
@@ -28,7 +29,8 @@ router.get('/resume/:id', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取指定id的简历失败了：' + err));
         }else {
-            res.json(formateResult(200, '获取指定id的简历成功了！', result));
+            // res.json(formateResult(200, '获取指定id的简历成功了！', result));
+            res.json(result);
         }
     });
 })
@@ -40,7 +42,8 @@ router.post('/resume', (req, res) => {
         if(err) {
             res.json(formateResult(500, '新增一条简历失败了：' + err));
         }else {
-            res.json(formateResult(200, '新增一条简历成功了！', result));
+            // res.json(formateResult(200, '新增一条简历成功了！', result));
+            res.json(result);
         }
     });
 });
