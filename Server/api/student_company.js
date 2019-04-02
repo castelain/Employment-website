@@ -15,7 +15,8 @@ router.get('/student_company', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取留言的列表失败了：' + err))
         }else {
-            res.json(formateResult(200, '获取留言的列表成功了！', result));
+            // res.json(formateResult(200, '获取留言的列表成功了！', result));
+            res.json(result);
         }
     });
     
@@ -28,7 +29,8 @@ router.get('/student_company/to_company/:company_id', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取所有学生给指定company_id公司的留言失败了：' + err));
         }else {
-            res.json(formateResult(200, '获取所有学生给指定company_id公司的留言成功了！', result));
+            // res.json(formateResult(200, '获取所有学生给指定company_id公司的留言成功了！', result));
+            res.json(result);
         }
     });
 });
@@ -40,7 +42,9 @@ router.get('/student_company/to_student/:student_id', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取所有公司给指定student_id学生的留言失败了：' + err));
         }else {
-            res.json(formateResult(200, '获取所有公司给指定student_id学生的留言成功了！', result));
+            // res.json(formateResult(200, '获取所有公司给指定student_id学生的留言成功了！', result));
+            res.json(result);
+            
         }
     });
 });

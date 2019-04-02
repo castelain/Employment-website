@@ -27,11 +27,13 @@
             </el-table-column>
             <el-table-column
                 prop="kind"
-                label="公司类型">
+                label="公司类型"
+                width="120">
             </el-table-column>
             <el-table-column
                 prop="scale"
-                label="公司规模">
+                label="公司规模"
+                width="120">
             </el-table-column>
             <el-table-column
                 prop="address"
@@ -40,15 +42,18 @@
             </el-table-column>
             <el-table-column
                 prop="email"
-                label="公司邮箱">
+                label="公司邮箱"
+                width="120">
             </el-table-column>
             <el-table-column
                 prop="link_man"
-                label="公司联系人">
+                label="公司联系人"
+                width="120">
             </el-table-column>
             <el-table-column
                 prop="link_man_tel"
-                label="公司联系人电话">
+                label="公司联系人电话"
+                width="120">
             </el-table-column>
             <el-table-column
                 fixed="right"

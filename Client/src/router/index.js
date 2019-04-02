@@ -172,7 +172,7 @@ export default new Router({
           component: SeeCompany
         },
         {
-          path: 'message',
+          path: 'student-message',
           name: 'student-message',
           component: Message
         }
