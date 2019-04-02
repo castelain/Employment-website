@@ -21,6 +21,11 @@
                 width="120">
             </el-table-column>
             <el-table-column
+                prop="majors"
+                label="招聘专业"
+                width="120">
+            </el-table-column>
+            <el-table-column
                 prop="holds_in"
                 label="举行时间"
                 width="80">
@@ -133,8 +138,7 @@ export default {
             if(this.form.keyword == '') {
                 this.$http.get('/api/seminar')
                 .then(response => {
-                    this.seminars = response;
-                    response.map((item, index) => {
+                        response.map((item, index) => {
                         item.status = this.formateStatus(item.status);
                         item.holds_in = this.formatTime(item.holds_in);
                         item.created_at = this.formatTime(item.created_at);
@@ -142,44 +146,39 @@ export default {
                         item.job_description = this.formateStr(item.job_description, 10);
                         item.salary_description = this.formateStr(item.salary_description, 10);
                         item.application_process = this.formateStr(item.application_process, 10);
-                        this.$http.get('/api/company/' + item.company_id)
-                            .then(response => {
-                                item.name = response[0].name;
-                            })
-                            .catch(error => {
-                                console.log('查询公司名称失败了！' + error);
-                            });
-                        });
-                    // 初始化记录的总数目
-                    this.setting.total = this.seminars.length;
-                    // 初始化临时变量
-                    this.temp = this.seminars;
-                    // 初始化首页的显示记录
-                    this.handleCurrentChange(1);
+                    });
+                        this.seminars = response;
+                        // 初始化记录的总数目
+                        this.setting.total = this.seminars.length;
+                        // 初始化临时变量
+                        this.temp = this.seminars;
+                        // 初始化首页的显示记录
+                        this.handleCurrentChange(1);
                 })
                 .catch(error => {
                     console.log('搜索宣讲会信息列表失败了:' + error);
                 });
             }else {
-                this.$http.get('/api/seminar?keyword=' + this.form.keyword)
+                let keyword = this.form.keyword;
+                if(this.form.keyword === '待审核') {
+                    keyword = 0;
+                }else if (this.form.keyword === '审核通过') {
+                    keyword = 1;
+                }else if(this.form.keyword === '审核不通过') {
+                    keyword = -1;
+                }
+                this.$http.get('/api/seminar?keyword=' + keyword)
                     .then(response => {
-                        this.seminars = response;
                         response.map((item, index) => {
-                            item.status = this.formateStatus(item.status);
-                            item.holds_in = this.formatTime(item.holds_in);
-                            item.created_at = this.formatTime(item.created_at);
-                            item.company_description = this.formateStr(item.company_description, 10);
-                            item.job_description = this.formateStr(item.job_description, 10);
-                            item.salary_description = this.formateStr(item.salary_description, 10);
-                            item.application_process = this.formateStr(item.application_process, 10);
-                            this.$http.get('/api/company/' + item.company_id)
-                                .then(response => {
-                                    item.name = response[0].name;
-                                })
-                                .catch(error => {
-                                    console.log('查询公司名称失败了！' + error);
-                                });
-                            });
+                        item.status = this.formateStatus(item.status);
+                        item.holds_in = this.formatTime(item.holds_in);
+                        item.created_at = this.formatTime(item.created_at);
+                        item.company_description = this.formateStr(item.company_description, 10);
+                        item.job_description = this.formateStr(item.job_description, 10);
+                        item.salary_description = this.formateStr(item.salary_description, 10);
+                        item.application_process = this.formateStr(item.application_process, 10);
+                    });
+                        this.seminars = response;
                         // 初始化记录的总数目
                         this.setting.total = this.seminars.length;
                         // 初始化临时变量
@@ -196,7 +195,6 @@ export default {
     created() {
         this.$http.get('/api/seminar')
             .then(response => {
-                this.seminars = response;
                 response.map((item, index) => {
                     item.status = this.formateStatus(item.status);
                     item.holds_in = this.formatTime(item.holds_in);
@@ -205,14 +203,8 @@ export default {
                     item.job_description = this.formateStr(item.job_description, 10);
                     item.salary_description = this.formateStr(item.salary_description, 10);
                     item.application_process = this.formateStr(item.application_process, 10);
-                    this.$http.get('/api/company/' + item.company_id)
-                        .then(response => {
-                            item.name = response[0].name;
-                        })
-                        .catch(error => {
-                            console.log('查询公司名称失败了！' + error);
-                        });
                 });
+                this.seminars = response;
                  // 初始化记录的总数目
                 this.setting.total = this.seminars.length;
                 // 初始化临时变量

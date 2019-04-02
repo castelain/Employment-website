@@ -23,7 +23,7 @@ router.get('/seminar', (req, res) => {
         });
     }else {
         // 根据输入的关键字，查询宣讲会信息
-        connection.query(sql_2, [ req.query.keyword, req.query.keyword, req.query.keyword ], (err, result) => {
+        connection.query(sql_2, [ keyword, keyword, keyword, keyword ], (err, result) => {
             if(err) {
                 res.json(formateResult(500, '根据关键字查找宣讲会信息失败了：' + err));
             }else {
@@ -41,7 +41,8 @@ router.get('/seminar/:id', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取指定id的宣讲会信息失败了：' + err));
         }else {
-            res.json(formateResult(200, '获取指定id的宣讲会信息成功了！', result));
+            // res.json(formateResult(200, '获取指定id的宣讲会信息成功了！', result));
+            res.json(result);
         }
     });
 })

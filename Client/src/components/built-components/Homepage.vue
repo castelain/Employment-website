@@ -18,16 +18,16 @@
                             <el-col :span="12" v-for="(seminar, index) in seminars" :key="index">
                                 <my-card>
                                     <div slot="title">
-                                        <span>{{ seminar.company }}</span>
+                                        <span>{{ seminar.name }}</span>
                                         <el-button type="text" @click="showDetail(seminar.id)" class="right">查看详情</el-button>
                                     </div>
                                     <div slot="content">
                                         <span class="text-bold">招聘专业：</span>
                                         <span>{{ seminar.majors }}</span>
                                     </div>
-                                    <div slot="info">
+                                    <div slot="info" style="margin-top: 4%;">
                                         <span>举行时间：</span>
-                                        <span>{{ seminar.time }}</span>
+                                        <span>{{ seminar.holds_in }}</span>
                                     </div>
                                 </my-card>
                             </el-col>
@@ -66,20 +66,7 @@ export default {
             ],
             // 校园招聘会数据
             seminarTitle: '校园招聘会',
-            seminars: [
-                {
-                    id: 1,
-                    company: '四方伟业',
-                    majors: '软件工程、信息安全、数字媒体技术',
-                    time: '2019-3-3'
-                },
-                {
-                    id: 2,
-                    company: '四方伟业',
-                    majors: '软件工程、信息安全、数字媒体技术',
-                    time: '2019-3-3'
-                }
-            ],
+            seminars: null,
             // 最新通知部分
             notices: null
         }
@@ -114,6 +101,17 @@ export default {
                         type: 'error',
                         message: '获取最新通知列表失败了！'+ error.msg
                     });
+            });
+
+        this.$http.get('/api/seminar?keyword=1')
+            .then(response => {
+                response.map((item, index) => {
+                    item.holds_in = this.formatTime(item.holds_in);
+                });
+                this.seminars = response.slice(0, 5);
+            })
+            .catch(error => {
+                console.log('获取宣讲会信息列表失败了:' + error);
             });
     },
 }
