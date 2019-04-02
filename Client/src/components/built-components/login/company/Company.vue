@@ -6,16 +6,16 @@
             <my-inner-nav :navs="innerNavs"></my-inner-nav>
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <el-menu mode="vertical" :default-active="menus[0].path" router
+                    <el-menu mode="vertical" :default-active="this.$route.path" router
                             background-color="#408FFF"
                             text-color="#fff"
                             active-text-color="#aabbaa">
-                        <el-menu-item :index="submenus.path" v-for="(submenus, index) in menus.slice(0, 4)" :key="index">
+                        <el-menu-item :index="submenus.path" v-for="(submenus, index) in menus.slice(0, 5)" :key="index">
                             <span>{{ submenus.menus }}</span>
                         </el-menu-item>
 
-                        <el-menu-item :index="menus[4].path" @click="logout">
-                            <span>{{ menus[4].menus }}</span>
+                        <el-menu-item :index="menus[5].path" @click="logout">
+                            <span>{{ menus[5].menus }}</span>
                         </el-menu-item>
                         
                     </el-menu>
@@ -52,6 +52,10 @@ export default {
                 {
                     menus: '企业资料',
                     path: '/company/information',
+                },
+                {
+                    menus: '修改密码',
+                    path: '/company/update-password-company',
                 },
                 {
                     menus: '查看学生',

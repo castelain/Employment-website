@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 const $sql = require('../sql-map/company');
+const $sql_admin = require('../sql-map/administrator');
 // 引进认证部分所需的函数
 const createToken = require('../authorization/create-token');
 const retoken = require('../authorization/retoken');

@@ -30,6 +30,7 @@ import Seminars from '@/components/built-components/login/company/Seminars'
 import Administrator from '@/components/built-components/login/administrator/Administrator'
 import StudentManage from '@/components/built-components/login/administrator/Student-Manage'
 import UpdatePasswordAdmin from '@/components/built-components/login/administrator/Update-Password-Admin'
+import UpdatePasswordCompany from '@/components/built-components/login/company/Update-Password-Company'
 import CompanyManage from '@/components/built-components/login/administrator/company-manage/Company-Manage'
 import SeminarManage from '@/components/built-components/login/administrator/company-manage/Seminar-Manage'
 import AssessmentManage from '@/components/built-components/login/administrator/information-manage/Assessment-Manage'
@@ -194,6 +195,11 @@ export default new Router({
           path: 'information',
           name: 'information',
           component: CompanyInformation
+        },
+        {
+          path: 'update-password-company',
+          name: 'update-password-company',
+          component: UpdatePasswordCompany
         },
         {
           path: 'see-profiles',

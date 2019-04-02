@@ -105,6 +105,11 @@ Vue.prototype.formateStr = function(str, number) {
   }
 }
 
+// 将数组转换为字符串
+Vue.prototype.arrToStr = function(arr, i) {
+  return arr.join(i);
+}
+
 // 将审核状态值转为字符串
 Vue.prototype.formateStatus = function(status) {
     if (status === 0) {

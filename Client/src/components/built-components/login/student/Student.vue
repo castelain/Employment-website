@@ -6,7 +6,7 @@
             <my-inner-nav :navs="innerNavs"></my-inner-nav>
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <el-menu mode="vertical" :default-active="menus[0].path" router
+                    <el-menu mode="vertical" :default-active="this.$route.path" router
                             background-color="#408FFF"
                             text-color="#fff"
                             active-text-color="#aabbaa">
