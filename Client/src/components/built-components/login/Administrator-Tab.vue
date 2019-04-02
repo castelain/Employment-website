@@ -67,7 +67,7 @@ export default {
                 .catch((error => {
                   this.$message({
                     type: 'error',
-                    message: '登录失败，请检查用户名密码后重试！'
+                    message: '登录管理员失败，请检查用户名密码后重试！'
                   });
                 }));
           }else{

@@ -30,23 +30,7 @@ export default {
     name: 'CareerAssessment',
     data () {
         return {
-            assessments: [
-                {
-                    id: 1,
-                    title: '霍兰德职业倾向测试大类解释',
-                    content: '霍兰德职业兴趣自测（Self-Directed Search）是由美国职业指导专家霍兰德（John Holland）根据他本人大量的职业咨询经验及其职业类型理论编制的测评工具。霍兰德认为，个人职业兴趣特性与职业之间应有一种内在的对应关系。根据兴趣的不同，人格可分为研究型（I）、艺术型（A）、社会型（S）、企业型（E）、传统型（C）、现实型（R）六个维度，每个人的性格都是这六个维度的不同程度组合。'.slice(0,40) + '......'
-                },
-                {
-                    id: 2,
-                    title: '霍兰德职业倾向测试大类解释',
-                    content: '霍兰德职业兴趣自测（Self-Directed Search）是由美国职业指导专家霍兰德（John Holland）根据他本人大量的职业咨询经验及其职业类型理论编制的测评工具。霍兰德认为，个人职业兴趣特性与职业之间应有一种内在的对应关系。根据兴趣的不同，人格可分为研究型（I）、艺术型（A）、社会型（S）、企业型（E）、传统型（C）、现实型（R）六个维度，每个人的性格都是这六个维度的不同程度组合。'.slice(0,40) + '......'
-                },
-                {
-                    id: 3,
-                    title: '霍兰德职业倾向测试大类解释',
-                    content: '霍兰德职业兴趣自测（Self-Directed Search）是由美国职业指导专家霍兰德（John Holland）根据他本人大量的职业咨询经验及其职业类型理论编制的测评工具。霍兰德认为，个人职业兴趣特性与职业之间应有一种内在的对应关系。根据兴趣的不同，人格可分为研究型（I）、艺术型（A）、社会型（S）、企业型（E）、传统型（C）、现实型（R）六个维度，每个人的性格都是这六个维度的不同程度组合。'.slice(0,40) + '......'
-                },
-            ],
+            assessments: null,
             columns: [ '职业评测', '内容简介', '操作' ],
              // 关于分页的设置
             setting: {
@@ -58,12 +42,24 @@ export default {
         }
     },
      created() {
-        // 初始化记录的总数目
-        this.setting.total = this.assessments.length;
-         // 初始化临时变量
-        this.temp = this.assessments;
-        // 初始化首页的显示记录
-        this.handleCurrentChange(1);
+        this.$http.get('/api/career_assessment')
+            .then(response => {
+                this.assessments = response;
+                response.map((value, index) => {
+                    value.created_at = this.formatTime(value.created_at);
+                    value.content = this.formateStr(value.content, 40);
+                });
+                 // 初始化记录的总数目
+                this.setting.total = this.assessments.length;
+                // 初始化临时变量
+                this.temp = this.assessments;
+                // 初始化首页的显示记录
+                this.handleCurrentChange(1);
+            })
+            .catch(error => {
+                console.log('获取职业评测列表失败了:' + error);
+            });
+
     },
     methods: {
         showDetail: function(row) {

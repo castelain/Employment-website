@@ -27,7 +27,8 @@ router.get('/employment_policy/:id', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取指定id的就业政策失败了：' + err));
         }else {
-            res.json(formateResult(200, '获取指定id的就业政策成功了！', result));
+            // res.json(formateResult(200, '获取指定id的就业政策成功了！', result));
+            res.json(result);
         }
     });
 })
@@ -39,7 +40,8 @@ router.post('/employment_policy', (req, res) => {
         if(err) {
             res.json(formateResult(500, '新增一条就业政策失败了：' + err));
         }else {
-            res.json(formateResult(200, '新增一条就业政策成功了！', result));
+            // res.json(formateResult(200, '新增一条就业政策成功了！', result));
+            res.json(result);
         }
     });
 });

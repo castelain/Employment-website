@@ -15,7 +15,8 @@ router.get('/school_college', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取学校学院的列表失败了：' + err))
         }else {
-            res.json(formateResult(200, '获取学校学院的列表成功了！', result));
+            // res.json(formateResult(200, '获取学校学院的列表成功了！', result));
+            res.json(result);
         }
     });
 });
@@ -27,7 +28,8 @@ router.get('/school_college/:id', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取指定id的学校学院失败了：' + err));
         }else {
-            res.json(formateResult(200, '获取指定id的学校学院成功了！', result));
+            // res.json(formateResult(200, '获取指定id的学校学院成功了！', result));
+            res.json(result);
         }
     });
 })

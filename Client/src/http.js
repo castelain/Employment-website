@@ -30,7 +30,7 @@ http.interceptors.response.use(
         if(data.code === 200) {
             return data.data;
         }else if(data.code === 401) {
-            window.location.href = '/login';
+            // window.location.href = '/login';
         }
         return data;
     },

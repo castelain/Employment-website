@@ -5,7 +5,7 @@
         <my-row id="content">
             <my-inner-nav :navs="innerNavs"></my-inner-nav>
             <el-row :gutter="20">
-                <el-col :span="6">
+                <el-col :span="5">
                     <el-menu mode="vertical" :default-active="menus[0].path" router
                             background-color="#408FFF"
                             text-color="#fff"
@@ -39,7 +39,7 @@
                         
                     </el-menu>
                 </el-col>
-                <el-col :span="18">
+                <el-col :span="19">
                     <router-view></router-view>
                 </el-col>
             </el-row>

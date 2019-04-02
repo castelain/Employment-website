@@ -68,6 +68,32 @@ Vue.filter('relativeTime', function (beforeTime) {
   return Moment(beforeTime).fromNow()
 })
 
+// 定义全局函数
+// 转换日期格式为2018-9-11
+Vue.prototype.formatTime = function(rawTime) {
+  return Moment(rawTime).format('YYYY-MM-DD')
+}
+
+// 字符串截取，超出的部分用......代替
+Vue.prototype.formateStr = function(str, number) {
+  if(str.length > Number(number)){
+    return str.slice(0, Number(number)) + '......';
+  }else{
+    return str;
+  }
+}
+
+// 将审核状态值转为字符串
+Vue.prototype.formateStatus = function(status) {
+    if (status === 0) {
+      return '待审核'
+    } else if (status === 1) {
+      return '审核通过'
+    } else {
+      return '审核不通过'
+    }
+}
+
 // 引入element-ui组件库
 Vue.use(ElementUI)
 

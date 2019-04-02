@@ -1,7 +1,7 @@
 <template>
     <div>
         <my-title title="校史沿革" style="margin-top: 2%;"></my-title>
-        <my-steps :steps="steps" style="margin-left: 40%;"></my-steps>
+        <my-steps :steps="steps" style="margin: 10%; margin-bottom: 10%; margin-right: 10%;"></my-steps>
     </div>
 </template>
 
@@ -11,22 +11,18 @@ export default {
     data () {
         return {
               // 校史沿革的数据
-            steps: [
-                {
-                    title: '1996年',
-                    content: 'birthday'
-                },
-                {
-                    title: '2001年',
-                    content: '滴水成冰'
-                },
-                {
-                    title: '2004年',
-                    content: '看错课表'
-                }
-            ]
+            steps: null
         }
-    }
+    },
+    created() {
+        this.$http.get('/api/school_event')
+            .then(response => {
+                this.steps = response;
+            })
+            .catch(error => {
+                console.log('获取最新通知列表失败了:' + error);
+            });
+    },
 }
 </script>
 

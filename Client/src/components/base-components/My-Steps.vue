@@ -1,5 +1,5 @@
 <template>
-    <el-steps direction="vertical">
+    <el-steps direction="vertical" :active="6" align-center>
         <el-step v-for="(item, index) in steps"
             :key="index"
             :title="item.title"

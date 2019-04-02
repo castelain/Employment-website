@@ -15,7 +15,8 @@ router.get('/latest_notification', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取最新通知的列表失败了：' + err))
         }else {
-            res.json(formateResult(200, '获取最新通知的列表成功了！', result));
+            // res.json(formateResult(200, '获取最新通知的列表成功了！', result));
+            res.json(result);
         }
     });
 });
@@ -27,7 +28,8 @@ router.get('/latest_notification/:id', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取指定id的最新通知失败了：' + err));
         }else {
-            res.json(formateResult(200, '获取指定id的最新通知成功了！', result));
+            // res.json(formateResult(200, '获取指定id的最新通知成功了！', result));
+            res.json(result);
         }
     });
 })

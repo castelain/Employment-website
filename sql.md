@@ -88,6 +88,7 @@
 - title: varchar(255) NN
 - created_at: timestamp NN DF(CURRENT_TIMESTAMP)
 - content: varchar(4096) NN
+- majors: varchar(255) NN
 
 ## Latest_Notification
 - id: int PK NN UN

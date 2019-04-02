@@ -93,7 +93,7 @@ router.put('/company/:id', (req, res) => {
     let sql_2 = $sql.update_by_id;
     let sql_3 = $sql.search_item;
     let user = retoken(req, res);
-    connection.query(sql_3, [ req.body.username, req.body.password ], (err, result) => {
+    connection.query(sql_3, [ user.username, user.password ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '验证登录用户是否为公司的操作失败了！'));
         }else {
@@ -130,7 +130,7 @@ router.delete('/company/:id', (req, res) => {
     let sql = $sql.detele_item;
     let sql_admin = $sql_admin.select_by_username;
     let user = retoken(req, res);
-    connection.query(sql_admin, [ user.body.username ], (err, result) => {
+    connection.query(sql_admin, [ user.username ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '验证登录用户是否为管理员的操作失败了！'));
         }else {

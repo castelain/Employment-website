@@ -18,7 +18,8 @@ router.get('/administrator', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取管理员的列表失败了：' + err))
         }else {
-            res.json(formateResult(200, '获取管理员的列表成功了！', result));
+            // res.json(formateResult(200, '获取管理员的列表成功了！', result));
+            res.json(result);
         }
     });   
 });
@@ -30,7 +31,8 @@ router.get('/administrator/:id', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取指定id的管理员失败了：' + err));
         }else {
-            res.json(formateResult(200, '获取指定id的管理员成功了！', result));
+            // res.json(formateResult(200, '获取指定id的管理员成功了！', result));
+            res.json(result);
         }
     });
 })
@@ -78,7 +80,8 @@ router.put('/administrator/:id', (req, res) => {
     let sql_2 = $sql.update_password_by_id;
     let sql_3 = $sql.search_item;
     let user = retoken(req, res);
-    connection.query(sql_3, [ req.body.username, req.body.password ], (err, result) => {
+    // console.log(user);
+    connection.query(sql_3, [ user.username, user.password ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '验证登录用户是否为管理员的操作失败了！'));
         }else {
@@ -113,7 +116,7 @@ router.delete('/administrator/:id', (req, res) => {
     let sql = $sql.detele_item;
     let sql_admin = $sql_admin.select_by_username;
     let user = retoken(req, res);
-    connection.query(sql_admin, [ user.body.username ], (err, result) => {
+    connection.query(sql_admin, [ user.username ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '验证登录用户是否为管理员的操作失败了！'));
         }else {

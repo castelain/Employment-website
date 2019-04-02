@@ -81,23 +81,7 @@ export default {
                 }
             ],
             // 最新通知部分
-            notices: [
-                {
-                    id: 1,
-                    title: '最新通知1',
-                    content: '最新通知的内容...............'
-                },
-                {
-                    id: 2,
-                    title: '最新通知2',
-                    content: '最新通知的内容...............'
-                },
-                {
-                    id: 3,
-                    title: '最新通知3',
-                    content: '最新通知的内容...............'
-                },
-            ]
+            notices: null
         }
     },
     methods: {
@@ -116,6 +100,21 @@ export default {
         let nav = document.getElementById('nav');
         this.navHeight = window.getComputedStyle(nav).height;
         document.getElementById('content').style.marginTop = this.navHeight;
+    },
+    created() {
+        this.$http.get('/api/latest_notification')
+            .then(response => {
+                this.notices = response.slice(0, 3);
+                this.notices.map((value, index) => {
+                    value.content = this.formateStr(value.content, 10);
+                });
+            })
+            .catch(error => {
+                this.$message({
+                        type: 'error',
+                        message: '获取最新通知列表失败了！'+ error.msg
+                    });
+            });
     },
 }
 </script>

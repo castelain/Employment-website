@@ -3,7 +3,7 @@
         <my-title title="专业简介" style="margin-top: 2%;"></my-title>
         <el-table :data="colleges" border stripe style="width: 100%;">
             <el-table-column
-                prop="name"
+                prop="title"
                 :label="columns[0]"
                 width="150">
             </el-table-column>
@@ -30,38 +30,7 @@ export default {
     name: 'MajorIntroduction',
     data () {
         return {
-            colleges: [
-                {
-                    id: 1,
-                    name: '软件学院',
-                    majors: '软件工程，数字媒体，信息安全，网络安全'
-                },
-                {
-                    id: 2,
-                    name: '信息学院',
-                    majors: '软件工程，数字媒体，信息安全，网络安全'
-                },
-                {
-                    id: 3,
-                    name: '国际金融学院',
-                    majors: '软件工程，数字媒体，信息安全，网络安全'
-                },
-                 {
-                    id: 4,
-                    name: '国际金融学院',
-                    majors: '软件工程，数字媒体，信息安全，网络安全'
-                },
-                 {
-                    id: 5,
-                    name: '国际金融学院',
-                    majors: '软件工程，数字媒体，信息安全，网络安全'
-                },
-                 {
-                    id: 6,
-                    name: '国际金融学院',
-                    majors: '软件工程，数字媒体，信息安全，网络安全'
-                }
-            ],
+            colleges: null,
             columns: [ '学院名称', '所含专业', '操作' ],
             // 关于分页的设置
             setting: {
@@ -73,12 +42,19 @@ export default {
         }
     },
     created() {
-        // 初始化记录的总数目
-        this.setting.total = this.colleges.length;
-         // 初始化临时变量
-        this.temp = this.colleges;
-        // 初始化首页的显示记录
-        this.handleCurrentChange(1);
+        this.$http.get('/api/school_college')
+            .then(response => {
+                this.colleges = response;
+                // 初始化记录的总数目
+                this.setting.total = this.colleges.length;
+                // 初始化临时变量
+                this.temp = this.colleges;
+                // 初始化首页的显示记录
+                this.handleCurrentChange(1);
+            })
+            .catch(error => {
+                console.log('获取所有学院的信息失败了！' + error);
+            }) ;
     },
     methods: {
         showDetail: function(row) {
