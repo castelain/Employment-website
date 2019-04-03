@@ -106,7 +106,11 @@ router.put('/student/:id', (req, res) => {
                         if(err) {
                             res.json(formateResult(500, '根据id更新学生信息失败了：' + err));
                         }else {
-                            res.json(formateResult(200, '根据id更新学生信息成功了！', result));
+                            // res.json(formateResult(200, '根据id更新学生信息成功了！', result));
+                            // 更新学生信息后，重发token
+                            req.body.password = user.password;
+                            let token = createToken(req);
+                            res.json({ token: token });
                         }
                     });
                 }else {
@@ -115,7 +119,11 @@ router.put('/student/:id', (req, res) => {
                         if(err) {
                             res.json(formateResult(500, '修改指定id学生的密码失败了：' + err));
                         }else {
-                            res.json(formateResult(200, '修改指定id学生的密码成功了！', result));
+                            // res.json(formateResult(200, '修改指定id学生的密码成功了！', result));
+                             // 签发token
+                             req.body.username = user.username;
+                             let token = createToken(req);
+                             res.json({ token: token });
                         }
                     });
                 }

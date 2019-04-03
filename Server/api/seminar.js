@@ -31,7 +31,6 @@ router.get('/seminar', (req, res) => {
             }
         });
     }
-    
 });
 
 // 获取指定id的宣讲会信息
@@ -49,14 +48,29 @@ router.get('/seminar/:id', (req, res) => {
 
 // 获取指定company_id的宣讲会信息
 router.get('/company/:id/seminar', (req, res) => {
-    let sql = $sql.select_by_companyId;
-    connection.query(sql, [ req.params['id'] ], (err, result) => {
-        if(err) {
-            res.json(formateResult(500, '获取指定company_id的宣讲会信息失败了：' + err));
-        }else {
-            res.json(formateResult(200, '获取指定company_id的宣讲会信息成功了！', result));
-        }
-    });
+    let sql_1 = $sql.select_by_companyId;
+    let sql_2 = $sql.select_by_keyword_companyId;
+    let keyword = req.query.keyword;
+    if(!keyword) {
+        // 获取指定company_id的宣讲会信息列表
+        connection.query(sql_1, [ req.params['id'] ], (err, result) => {
+            if(err) {
+                res.json(formateResult(500, '获取指定company_id的宣讲会信息失败了：' + err));
+            }else {
+                // res.json(formateResult(200, '获取指定company_id的宣讲会信息成功了！', result));
+                res.json(result);
+            }
+        });
+    }else {
+        // 根据输入的关键字，查询指定company_id的宣讲会信息
+        connection.query(sql_2, [ keyword, keyword, keyword, keyword ], (err, result) => {
+            if(err) {
+                res.json(formateResult(500, '根据关键字查找宣讲会信息失败了：' + err));
+            }else {
+                res.json(formateResult(200,  '根据关键字查找宣讲会信息成功了！', result));
+            }
+        });
+    }
 })
 
 

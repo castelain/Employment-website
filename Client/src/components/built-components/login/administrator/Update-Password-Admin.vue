@@ -3,10 +3,10 @@
         <my-title title="更新密码" class="title"></my-title>
         <el-form :model="form" class="demo-form-inline" label-width="100px" style="margin-top: 10%;">
             <el-form-item label="原密码">
-                <el-input v-model="form.oldPassword" placeholder="请输入原来的密码" type="password"></el-input>
+                <el-input v-model="form.oldPassword" placeholder="请输入原来的密码" type="password" show-password></el-input>
             </el-form-item>
             <el-form-item label="新密码">
-                <el-input v-model="form.password" placeholder="请输入新的密码" type="password"></el-input>
+                <el-input v-model="form.password" placeholder="请输入新的密码" type="password" show-password></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="update">确认修改</el-button>
@@ -33,6 +33,10 @@ export default {
                     if(response[0].password == this.form.oldPassword) {
                         this.$http.put('/api/administrator/' + localStorage.getItem('id'), this.form)
                             .then(response => {
+                                // 更改密码后，重置token
+                                let token = response.token;
+                                localStorage.removeItem('token');
+                                localStorage.setItem('token', token);
                                 this.$message({
                                     type: 'success',
                                     message: '管理员密码更新成功！'

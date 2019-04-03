@@ -209,11 +209,14 @@ export default {
             this.updateFormVisible = true;
         },
         update: function () {
-            // this.updateForm.kind = this.arrToStr(this.updateForm.kind, '，');
-            // this.updateForm.scale = this.arrToStr(this.updateForm.scale, '，');
-            // this.updateForm.kind = String(this.updateForm.kind);
+            this.updateForm.kind = String(this.updateForm.kind);
             this.$http.put('/api/company/' + localStorage.getItem('id'), this.form)
                 .then(response => {
+                    // 更新信息后，重置token
+                    let token = response.token;
+                    console.log('更新信息后，重置token: ' + token);
+                    localStorage.removeItem('token');
+                    localStorage.setItem('token', token);
                     this.$message({
                         type: 'success',
                         message: '更新企业基本信息成功了！'

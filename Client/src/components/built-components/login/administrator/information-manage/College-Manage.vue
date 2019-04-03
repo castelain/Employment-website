@@ -61,14 +61,14 @@
             </div>
         </el-dialog>
 
-         <!--添加专业简介的弹出框 -->
+        <!--添加专业简介的弹出框 -->
         <el-dialog title="添加专业简介" :visible.sync="addFormVisible">
             <el-form :model="addForm">
                 <el-form-item label="学院">
                     <el-input v-model="addForm.title" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="专业">
-                    <el-input v-model="editForm.majors" autocomplete="off"></el-input>
+                    <el-input v-model="addForm.majors" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="简介">
                     <el-input v-model="addForm.content" autocomplete="off" type="textarea"

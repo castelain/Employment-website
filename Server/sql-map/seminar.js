@@ -7,7 +7,8 @@ let sqlMap = {
     update_status: 'update Seminar set status = ? where id = ?',
     delele_by_id: 'delete from Seminar where id = ?',
     delete_by_companyId: 'delete from Seminar where company_id = ?',
-    select_by_keyword: 'select * from (select s.id, c.name, s.holds_in, s.address, s.majors, s.company_description, s.job_description, s.salary_description, s.application_process, s.status, s.created_at from Seminar as s, Company as c where s.company_id = c.id) as r where r.address = ? or r.majors = ? or r.status = ? or r.name = ? '
+    select_by_keyword: 'select * from (select s.id, c.name, s.holds_in, s.address, s.majors, s.company_description, s.job_description, s.salary_description, s.application_process, s.status, s.created_at from Seminar as s, Company as c where s.company_id = c.id) as r where r.address = ? or r.majors = ? or r.status = ? or r.name = ? ',
+    select_by_keyword_companyId: 'select * from (select * from Seminar where company_id = ?) as r where r.address = ? or r.majors = ? or r.status = ?'
 }
 
 module.exports = sqlMap;

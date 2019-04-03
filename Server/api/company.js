@@ -93,12 +93,16 @@ router.put('/company/:id', (req, res) => {
     let sql_1 = $sql.update_password;
     let sql_2 = $sql.update_by_id;
     let sql_3 = $sql.search_item;
+    // console.log('before retoken');
     let user = retoken(req, res);
+    // console.log('user: ' + user.username + ' password: ' + user.password);
     connection.query(sql_3, [ user.username, user.password ], (err, result) => {
         if(err) {
-            res.json(formateResult(500, '验证登录用户是否为公司的操作失败了！'));
+            res.json(formateResult(500, '验证登录用户是否为公司的操作失败了！' + err));
         }else {
+            // console.log('result.length:' + result.length);
             if(result.length >= 1) {
+                // console.log('result.length >= 1');
                 // 解析出的信息说明用户为公司，可进行更新信息的操作
                 if(req.body.username) {
                     // 根据id，更新公司的全部信息
@@ -106,7 +110,11 @@ router.put('/company/:id', (req, res) => {
                         if(err) {
                             res.json(formateResult(500, '根据id更新公司信息失败了：' + err));
                         }else {
-                            res.json(formateResult(200, '根据id更新公司信息成功了！', result));
+                            // 签发token
+                            req.body.password = user.password;
+                            let token = createToken(req);
+                            res.json({ token: token });
+                            // res.json(formateResult(200, '根据id更新公司信息成功了！', result));
                         }
                     });
                 }else {
@@ -115,11 +123,15 @@ router.put('/company/:id', (req, res) => {
                         if(err) {
                             res.json(formateResult(500, '修改指定id公司的密码失败了：' + err));
                         }else {
-                            res.json(formateResult(200, '修改指定id公司的密码成功了！', result));
+                                // 签发token
+                                req.body.username = user.username;
+                                let token = createToken(req);
+                                res.json({ token: token });
                         }
                     });
                 }
             }else {
+                // console.log('result.length < 1');
                 res.json(formateResult(401, '您不具有进行更新该公司信息操作的权限！'));
             }
         }

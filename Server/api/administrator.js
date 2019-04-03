@@ -91,7 +91,11 @@ router.put('/administrator/:id', (req, res) => {
                         if(err) {
                             res.json(formateResult(500, '根据id更新管理员失败了：' + err));
                         }else {
-                            res.json(formateResult(200, '根据id更新管理员成功了！', result));
+                            // res.json(formateResult(200, '根据id更新管理员成功了！', result));
+                            // 签发token
+                            req.body.password = user.password;
+                            let token = createToken(req);
+                            res.json({ token: token });
                         }
                     });
                 }else {
@@ -100,7 +104,11 @@ router.put('/administrator/:id', (req, res) => {
                         if(err) {
                             res.json(formateResult(500, '根据id更新管理员密码失败了：' + err));
                         }else {
-                            res.json(formateResult(200, '根据id更新管理员密码成功了！', result));
+                            // res.json(formateResult(200, '根据id更新管理员密码成功了！', result));
+                            // 签发token
+                            req.body.username = user.username;
+                            let token = createToken(req);
+                            res.json({ token: token });
                         }
                     });
                 }
