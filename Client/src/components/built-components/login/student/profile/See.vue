@@ -94,25 +94,22 @@
                         </div>
                     </el-col>
                 </el-row>
-                
-                
-            
             </div>
-            <div>
-                <div class="text-left description-block">
-                    <h3>一、获得奖项</h3>
+            <div style="padding-left: 6%;">
+                <div class="text-left description-block" v-if="form.awards">
+                    <h3><i class="el-icon-info"></i>&nbsp;&nbsp;&nbsp;&nbsp;获得奖项</h3>
                     <p>{{ form.awards }}</p>
                 </div>
-                <div class="text-left description-block">
-                    <h3>二、个人技能</h3>
+                <div class="text-left description-block" v-if="form.skills">
+                    <h3><i class="el-icon-info"></i>&nbsp;&nbsp;&nbsp;&nbsp;个人技能</h3>
                     <p>{{ form.skills }}</p>
                 </div>
-                <div class="text-left description-block">
-                    <h3>三、实习/学校/工作经历</h3>
+                <div class="text-left description-block" v-if="form.experiences">
+                    <h3><i class="el-icon-info"></i>&nbsp;&nbsp;&nbsp;&nbsp;实习/学校/工作经历</h3>
                     <p>{{ form.experiences }}</p>
                 </div>
-                <div class="text-left description-block">
-                    <h3>四、自我评价</h3>
+                <div class="text-left description-block" v-if="form.introduction">
+                    <h3><i class="el-icon-info"></i>&nbsp;&nbsp;&nbsp;&nbsp;自我评价</h3>
                     <p>{{ form.introduction }}</p>
                 </div>
             </div>

@@ -68,7 +68,7 @@
 
         <!--添加宣讲会的弹出框 -->
         <el-dialog title="申请宣讲会" :visible.sync="addFormVisible">
-            <el-form :model="addForm">
+            <el-form :model="addForm"  :rules="rules"  ref="addForm">
                 <el-form-item label="招聘专业">
                     <el-input v-model="addForm.majors">
                     </el-input>
@@ -80,8 +80,9 @@
                                 placeholder="选择时间" 
                                 v-model="addForm.holds_in" 
                                 style="width: 100%;"
-                                format="yyyy 年 MM 月 dd 日 HH:mm:ss"
-                                value-format="timestamp">
+                                @change="formateDate"
+                                value-format="yyyy-MM-dd HH:mm:ss"
+                            >
                             </el-date-picker>
                         </el-form-item>
                     </el-col>
@@ -236,23 +237,32 @@ export default {
                     });
                 });
         },
-        submitAddForm: function() {
-            this.$http.post('/api/seminar', this.addForm)
-                .then(response => {
-                    this.$message({
-                        type: 'success',
-                        message: '添加宣讲会成功了！'
-                    });
-                    this.addFormVisible = false;
-                    // location.reload();
-                })
-                .catch(error => {
+        submitAddForm: function(addForm) {
+            this.$refs['addForm'].validate(valid => {
+                if(valid) {
+                    this.$http.post('/api/seminar', this.addForm)
+                        .then(response => {
+                            this.$message({
+                                type: 'success',
+                                message: '添加宣讲会成功了！'
+                            });
+                            this.addFormVisible = false;
+                            location.reload();
+                        })
+                        .catch(error => {
+                            this.$message({
+                                type: 'error',
+                                message: '添加宣讲会失败了！' + error.msg
+                            });
+                            this.addFormVisible = false;
+                        });
+                }else {
                     this.$message({
                         type: 'error',
-                        message: '添加宣讲会失败了！' + error.msg
+                        message: '创建宣讲会申请表单失败了'
                     });
-                    this.addFormVisible = false;
-                });
+                }
+            });
         },
         search: function () {
             if(this.form.keyword == '') {
@@ -310,6 +320,11 @@ export default {
                         console.log('搜索宣讲会信息列表失败了:' + error);
                     });
             }
+        },
+        formateDate: function (val) {
+            this.addForm.holds_in = val;
+            console.log('this.form.holds_in');
+            console.log(this.addForm.holds_in);
         }
     },
     created() {

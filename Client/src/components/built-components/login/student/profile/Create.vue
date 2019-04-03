@@ -66,8 +66,8 @@
                         placeholder="选择日期" 
                         v-model="form.birthday" 
                         style="width: 100%;"
-                        format="yyyy 年 MM 月 dd 日"
-                        value-format="timestamp">
+                        value-format="yyyy-MM-dd"
+                    >
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item label="当前住址" prop="address">
@@ -283,10 +283,6 @@ export default {
                     value: '苗族',
                     label: '苗族'
                 },
-                // {
-                //     value: '回族',
-                //     label: '回族'
-                // },
                 {
                     value: '维吾尔族',
                     label: '维吾尔族'
@@ -391,170 +387,14 @@ export default {
                     value: '土家族',
                     label: '土家族'
                 },
-                // {
-                //     value: '汉族',
-                //     label: '汉族'
-                // },
-                // {
-                //     value: '回族',
-                //     label: '回族'
-                // },
-                // {
-                //     value: '彝族',
-                //     label: '彝族'
-                // },
-                // {
-                //     value: '壮族',
-                //     label: '壮族'
-                // },
-                // {
-                //     value: '苗族',
-                //     label: '苗族'
-                // },
-                // {
-                //     value: '回族',
-                //     label: '回族'
-                // },
-                // {
-                //     value: '维吾尔族',
-                //     label: '维吾尔族'
-                // },
-                // {
-                //     value: '藏族',
-                //     label: '藏族'
-                // },
-                // {
-                //     value: '瑶族',
-                //     label: '瑶族'
-                // },
-                // {
-                //     value: '侗族',
-                //     label: '侗族'
-                // },
-                // {
-                //     value: '傣族',
-                //     label: '傣族'
-                // },
-                // {
-                //     value: '白族',
-                //     label: '白族'
-                // },
-                // {
-                //     value: '满族',
-                //     label: '满族'
-                // },
-                // {
-                //     value: '朝鲜族',
-                //     label: '朝鲜族'
-                // },
-                // {
-                //     value: '布依族',
-                //     label: '布依族'
-                // },
-                // {
-                //     value: '蒙古族',
-                //     label: '蒙古族'
-                // },
-                // {
-                //     value: '羌族',
-                //     label: '羌族'
-                // },
-                // {
-                //     value: '仫佬族',
-                //     label: '仫佬族'
-                // },
-                // {
-                //     value: '土族',
-                //     label: '土族'
-                // },
-                // {
-                //     value: '柯尔克孜族',
-                //     label: '柯尔克孜族'
-                // },
-                // {
-                //     value: '景颇族',
-                //     label: '景颇族'
-                // },
-                // {
-                //     value: '纳西族',
-                //     label: '纳西族'
-                // },
-                // {
-                //     value: '东乡族',
-                //     label: '东乡族'
-                // },
-                // {
-                //     value: '水族',
-                //     label: '水族'
-                // },
-                // {
-                //     value: '拉祜族',
-                //     label: '拉祜族'
-                // },
-                // {
-                //     value: '高山族',
-                //     label: '高山族'
-                // },
-                // {
-                //     value: '佤族',
-                //     label: '佤族'
-                // },
-                // {
-                //     value: '僳僳族',
-                //     label: '僳僳族'
-                // },
-                // {
-                //     value: '黎族',
-                //     label: '黎族'
-                // },
-                // {
-                //     value: '哈萨克族',
-                //     label: '哈萨克族'
-                // },
-                // {
-                //     value: '哈尼族',
-                //     label: '哈尼族'
-                // },
-                // {
-                //     value: '土家族',
-                //     label: '土家族'
-                // },
-                // {
-                //     value: '汉族',
-                //     label: '汉族'
-                // },
-                // {
-                //     value: '回族',
-                //     label: '回族'
-                // },
-                // {
-                //     value: '彝族',
-                //     label: '彝族'
-                // },
-                // {
-                //     value: '壮族',
-                //     label: '壮族'
-                // },
-                // {
-                //     value: '苗族',
-                //     label: '苗族'
-                // },
-                // {
-                //     value: '回族',
-                //     label: '回族'
-                // },
-                // {
-                //     value: '维吾尔族',
-                //     label: '维吾尔族'
-                // },
-                // {
-                //     value: '藏族',
-                //     label: '藏族'
-                // },
-                // {
-                //     value: '瑶族',
-                //     label: '瑶族'
-                // }
+                {
+                    value: '畲族',
+                    label: '畲族'
+                },
+                {
+                    value: '达斡尔族',
+                    label: '达斡尔族'
+                },
                 {
                     value: '基诺族',
                     label: '基诺族'

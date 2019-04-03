@@ -10,7 +10,7 @@
                 <el-collapse accordion>
                     <el-collapse-item v-for="(item, index) in questions" :key="index">
                         <template slot="title">
-                            <i class="header-icon el-icon-info"></i>
+                            <i class="header-icon el-icon-question"></i>
                             <h3>&nbsp;&nbsp;&nbsp;&nbsp;{{ item.question }}</h3>
                         </template>
                         <div style="padding-left: 3%;" class="text-left">{{ item.answer }}</div>

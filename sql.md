@@ -22,7 +22,7 @@
 ## Seminar
 - id: int PK UN NN
 - company_id: int FK（级联删除，级联更新） NN
-- holds_in: timestamp NN
+- holds_in: datetime NN
 - address: varchar(255) NN
 - majors: varchar(255)
 - company_description: varchar(255)
@@ -37,7 +37,7 @@
 - student_id: int FK（级联删除，级联更新） NN UN
 - email: varchar(255) NN
 - sex: int(1) NN
-- birthday: timestamp NN
+- birthday: datetime NN
 - telephone: varchar(255) NN
 - will_jobs: varchar(255)
 - will_spots: varchar(255)
