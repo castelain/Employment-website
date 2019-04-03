@@ -15,7 +15,8 @@ router.get('/career_assessment', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取职业评测的列表失败了：' + err))
         }else {
-            res.json(formateResult(200, '获取职业评测的列表成功了！', result));
+            // res.json(formateResult(200, '获取职业评测的列表成功了！', result));
+            res.json(result);
         }
     });
 });

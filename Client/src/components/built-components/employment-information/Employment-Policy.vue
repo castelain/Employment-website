@@ -35,7 +35,7 @@ export default {
              // 关于分页的设置
             setting: {
                 pageSize: 5,
-                total: null
+                total: 5
             },
             // 临时变量
             temp: null,
@@ -44,17 +44,20 @@ export default {
     created() {
         this.$http.get('/api/employment_policy')
             .then(response => {
-                this.policies = response;
                 response.map((value, index) => {
                     value.created_at = this.formatTime(value.created_at);
                     value.content = this.formateStr(value.content, 30);
                 });
-                 // 初始化记录的总数目
-                this.setting.total = this.polices.length;
-                // 初始化临时变量
-                this.temp = this.polices;
-                // 初始化首页的显示记录
-                this.handleCurrentChange(1);
+                this.policies = response;
+                if(this.polices.length) {
+                    // 初始化记录的总数目
+                    this.setting.total = this.polices.length;
+                    // 初始化临时变量
+                    this.temp = this.polices;
+                    // 初始化首页的显示记录
+                    this.handleCurrentChange(1);
+                }
+               
             })
             .catch(error => {
                 console.log('获取就业政策列表失败了:' + error);

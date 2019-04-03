@@ -44,11 +44,11 @@ export default {
      created() {
         this.$http.get('/api/career_assessment')
             .then(response => {
-                this.assessments = response;
                 response.map((value, index) => {
                     value.created_at = this.formatTime(value.created_at);
                     value.content = this.formateStr(value.content, 40);
                 });
+                this.assessments = response;
                  // 初始化记录的总数目
                 this.setting.total = this.assessments.length;
                 // 初始化临时变量

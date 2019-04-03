@@ -15,7 +15,8 @@ router.get('/employment_policy', (req, res) => {
         if(err) {
             res.json(formateResult(500, '获取就业政策的列表失败了：' + err))
         }else {
-            res.json(formateResult(200, '获取就业政策的列表成功了！', result));
+            // res.json(formateResult(200, '获取就业政策的列表成功了！', result));
+            res.json(result);
         }
     });
 });
