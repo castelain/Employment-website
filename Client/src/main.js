@@ -22,6 +22,7 @@ import MyTitle from '@/components/base-components/My-Title'
 import MyTabs from '@/components/base-components/My-Tabs'
 import MySteps from '@/components/base-components/My-Steps'
 import MyPagination from '@/components/base-components/My-Pagination'
+import SingleBanner from '@/components/base-components/Single-Banner'
 // 引入自定义的全局样式文件
 import './assets/styles/global.css'
 
@@ -48,6 +49,7 @@ Vue.component('my-title', MyTitle)
 Vue.component('my-tabs', MyTabs)
 Vue.component('my-steps', MySteps)
 Vue.component('my-pagination', MyPagination)
+Vue.component('single-banner', SingleBanner)
 
 // 注册全局过滤器
 // 字符串截取，超出的部分用......代替

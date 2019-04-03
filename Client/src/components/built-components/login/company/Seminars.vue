@@ -61,25 +61,77 @@
                 width="160">
             <template slot-scope="scope">
                 <el-button type="text" @click="see(scope.row)" size="small">查看详情</el-button>
-                <el-button type="danger" @click="delete(scope.row)" plain size="small">删除</el-button>
+                <el-button type="danger" @click="deleteSeminar(scope.row)" plain size="small">删除</el-button>
             </template>
             </el-table-column>
         </el-table>
 
         <!--添加宣讲会的弹出框 -->
-        <el-dialog title="添加宣讲会" :visible.sync="addFormVisible">
+        <el-dialog title="申请宣讲会" :visible.sync="addFormVisible">
             <el-form :model="addForm">
-                <el-form-item label="学院">
-                    <el-input v-model="addForm.title" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="专业">
-                    <el-input v-model="addForm.majors" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="简介">
-                    <el-input v-model="addForm.content" autocomplete="off" type="textarea"
-                        :autosize="{ minRows: 2, maxRows: 4}">
+                <el-form-item label="招聘专业">
+                    <el-input v-model="addForm.majors">
                     </el-input>
                 </el-form-item>
+                <el-row>
+                    <el-col :span="12">
+                         <el-form-item label="举办时间" prop="holds_in">
+                            <el-date-picker type="datetime"
+                                placeholder="选择时间" 
+                                v-model="addForm.holds_in" 
+                                style="width: 100%;"
+                                format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+                                value-format="timestamp">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="举办地址" class="right" prop="address">
+                            <el-select v-model="addForm.address" placeholder="请选择">
+                                <el-option
+                                    v-for="item in addressOptions"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-form-item label="公司介绍">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="addForm.company_description">
+                    </el-input>
+                </el-form-item>
+                 <el-form-item label="工作职责">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="addForm.job_description">
+                    </el-input>
+                </el-form-item>
+                 <el-form-item label="薪资待遇">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="addForm.salary_description">
+                    </el-input>
+                </el-form-item>
+                 <el-form-item label="应聘流程">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="addForm.application_process">
+                    </el-input>
+                </el-form-item>
+               
+                
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="addFormVisible = false">取 消</el-button>
@@ -97,7 +149,7 @@ export default {
     data () {
         return {
             seminars: null,
-             addFormVisible: false,
+            addFormVisible: false,
             formLabelWidth: '120px',
              // 关于分页的设置
             setting: {
@@ -110,15 +162,47 @@ export default {
             form: {
                 keyword: ''
             },
+            addressOptions: [
+                {
+                    value: '楠苑综合楼二楼报告厅',
+                    lalel: '楠苑综合楼二楼报告厅'
+                },
+                {
+                    value: '中山邦翰楼1楼报告厅',
+                    lalel: '中山邦翰楼1楼报告厅'
+                },
+                {
+                    value: '软件学院二楼报告厅',
+                    lalel: '软件学院二楼报告厅'
+                },
+                {
+                    value: '信息学院二楼报告厅',
+                    lalel: '信息学院二楼报告厅'
+                },
+                {
+                    value: '马克思主义学院1楼报告厅',
+                    lalel: '马克思主义学院1楼报告厅'
+                },
+            ],
             // 添加表单的数据
             addForm: {
-                holds_in: '',
+                company_id: localStorage.getItem('id'),
+                holds_in: null,
                 address: '',
                 majors: '',
                 company_description: '',
                 job_description: '',
                 salary_description: '',
                 application_process: ''
+            },
+                         // 表单验证规则
+            rules: {
+                holds_in: [
+                    { required: true, message: '请选择举办日期', trigger: "blur" }
+                ],
+                address: [
+                    { required: true, message: '请选择举办地点', trigger: "blur" }
+                ]
             },
         }
     },
@@ -136,7 +220,7 @@ export default {
         see: function (row) {
             this.$router.push({ path: '/seminar-detail/' + row.id });
         },
-        delete: function(row) {
+        deleteSeminar: function(row) {
             this.$http.delete('/api/seminar/' + row.id)
                 .then(response => {
                     this.$message({
@@ -153,15 +237,21 @@ export default {
                 });
         },
         submitAddForm: function() {
-            this.$http.post('/api/school_college', this.addForm)
+            this.$http.post('/api/seminar', this.addForm)
                 .then(response => {
-                    location.reload();
+                    this.$message({
+                        type: 'success',
+                        message: '添加宣讲会成功了！'
+                    });
+                    this.addFormVisible = false;
+                    // location.reload();
                 })
                 .catch(error => {
                     this.$message({
                         type: 'error',
                         message: '添加宣讲会失败了！' + error.msg
                     });
+                    this.addFormVisible = false;
                 });
         },
         search: function () {
@@ -255,8 +345,6 @@ export default {
         margin-top: -4px;
         margin-bottom: -4px;
     }
-    #search {
-        margin: 6% auto;
-    }
+
 </style>
 
