@@ -13,7 +13,7 @@
                             <i class="header-icon el-icon-question"></i>
                             <h3>&nbsp;&nbsp;&nbsp;&nbsp;{{ item.question }}</h3>
                         </template>
-                        <div style="padding-left: 3%;" class="text-left">{{ item.answer }}</div>
+                        <div style="padding-left: 3%; padding-right: 30%;" class="text-left">{{ item.answer }}</div>
                     </el-collapse-item>
                     </el-collapse>
             </div>
