@@ -57,3 +57,7 @@
 .top {
     margin-top: 5%; 
 }
+/* 设置文本段落在显示时，保留空格和换行 */
+.preWrap {
+    white-space: pre-wrap;
+}

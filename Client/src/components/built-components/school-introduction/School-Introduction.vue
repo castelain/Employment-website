@@ -39,15 +39,15 @@ export default {
             // banner数据
             banners: [
                 {
-                    src: require('../../../assets/images/homepage/Dew_by_Aaron_Burden.jpg'),
+                    src: require('../../../assets/images/school-introduction/学校简介banner-1.jpg'),
                     msg: 'banner1'
                 },
                 {
-                    src: require('../../../assets/images/homepage/Early_Spring_Memory2.jpg'),
+                    src: require('../../../assets/images/school-introduction/学校简介banner-2.jpg'),
                     msg: 'banner2'
                 },
                 {
-                    src: require('../../../assets/images/homepage/Flower_by_Dominik_Scythe.jpg'),
+                    src: require('../../../assets/images/school-introduction/学校简介banner-3.jpg'),
                     msg: 'banner3'
                 },
             ],

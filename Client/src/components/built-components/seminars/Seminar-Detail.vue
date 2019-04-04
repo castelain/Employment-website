@@ -11,10 +11,6 @@
                         <span>企业名称：</span>
                         <span>{{ seminarDetail.name }}</span>
                     </div>
-                    <!-- <div>
-                        <span>企业主页：</span>
-                        <span>{{ seminarDetail.homepage }}</span>
-                    </div> -->
                     <div>
                         <span>举行时间：</span>
                         <span>{{ seminarDetail.holds_in }}</span>
@@ -31,19 +27,19 @@
                 <div>
                     <div class="text-left description-block">
                         <h3>一、企业简介</h3>
-                        <p>{{ seminarDetail.company_description }}</p>
+                        <p class="preWrap">{{ seminarDetail.company_description }}</p>
                     </div>
                     <div class="text-left description-block">
                         <h3>二、职位描述</h3>
-                        <p>{{ seminarDetail.job_description }}</p>
+                        <p class="preWrap">{{ seminarDetail.job_description }}</p>
                     </div>
                     <div class="text-left description-block">
                         <h3>三、薪酬描述</h3>
-                        <p>{{ seminarDetail.salary_description }}</p>
+                        <p class="preWrap">{{ seminarDetail.salary_description }}</p>
                     </div>
                     <div class="text-left description-block">
                         <h3>四、应聘流程</h3>
-                        <p>{{ seminarDetail.application_process }}</p>
+                        <p class="preWrap">{{ seminarDetail.application_process }}</p>
                     </div>
                 </div>
             </my-row>

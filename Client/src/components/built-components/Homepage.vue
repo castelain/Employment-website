@@ -52,16 +52,19 @@ export default {
             // banner数据
             banners: [
                 {
-                    src: require('../../assets/images/about-us/banner.jpg'),
-                    msg: 'banner1'
+                    src: require('../../assets/images/homepage/首页banner-1.jpg'),
+                    msg: 'banner1',
+                    path: '/seminar-list'
                 },
                 {
-                    src: require('../../assets/images/homepage/Early_Spring_Memory2.jpg'),
-                    msg: 'banner2'
+                    src: require('../../assets/images/homepage/首页banner-2.jpg'),
+                    msg: 'banner2',
+                    path: '/seminar-list'
                 },
                 {
-                    src: require('../../assets/images/homepage/Flower_by_Dominik_Scythe.jpg'),
-                    msg: 'banner3'
+                    src: require('../../assets/images/homepage/首页banner-3.jpg'),
+                    msg: 'banner3',
+                    path: '/seminar-list'
                 },
             ],
             // 校园招聘会数据
@@ -81,7 +84,12 @@ export default {
         showDetail: function(id) {
             console.log(id);
             this.$router.push({ path: '/seminar-detail/' + id });
-        }
+        },
+        // handleClickBanner: function() {
+        //     console.log('click banner');
+        //     this.$router.push({ path: '/seminar-list' });
+            
+        // }
     },
     mounted() {
         let nav = document.getElementById('nav');

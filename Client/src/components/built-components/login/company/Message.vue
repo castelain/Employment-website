@@ -13,7 +13,7 @@
                             <span>{{ props.row.realname }}</span>
                         </el-form-item>
                         <el-form-item label="留言详情">
-                            <span>{{ props.row.message }}</span>
+                            <span class="preWrap">{{ props.row.message }}</span>
                         </el-form-item>
                     </el-form>
                 </template>

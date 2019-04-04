@@ -2,7 +2,13 @@
     <my-container>
         <my-header slot="my-header" id="nav"></my-header>
 
-        <my-row id="content">
+        <el-row>
+            <el-col :span="24">
+                <single-banner :img="banner" id="content"></single-banner>
+            </el-col>
+        </el-row>
+
+        <my-row>
             <my-inner-nav :navs="innerNavs"></my-inner-nav>
             <el-row :gutter="20">
                 <el-col :span="6">
@@ -59,6 +65,12 @@ export default {
                     msg: '学生中心' 
                 }
             ],
+            // banner图数据
+            banner: {
+                src: require('../../../../assets/images/user-center/学生中心.jpg'),
+                msg: '管理员中心 banner',
+                detailPath: '#'
+            },
             // 侧边栏数据
             menus: [
                 {

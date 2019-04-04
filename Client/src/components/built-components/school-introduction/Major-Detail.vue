@@ -9,7 +9,7 @@
                 <div class="text-bold" id="majors">
                     {{ majorDetail.majors }}
                 </div>
-                <div>
+                <div class="preWrap text-left">
                     {{ majorDetail.content }}
                 </div>
             </my-row>

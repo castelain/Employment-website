@@ -6,7 +6,7 @@
             <my-row>
                 <my-inner-nav :navs="innerNavs"></my-inner-nav>
                 <my-title :title="policyDetail.title"></my-title>
-                <p class="text-left">{{ policyDetail.content }}</p>
+                <p class="text-left preWrap">{{ policyDetail.content }}</p>
             </my-row>
         </div>
 

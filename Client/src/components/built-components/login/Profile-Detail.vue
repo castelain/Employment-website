@@ -103,19 +103,19 @@
                 <div>
                     <div class="text-left description-block">
                         <h3>一、获得奖项</h3>
-                        <p>{{ form.awards }}</p>
+                        <p class="preWrap">{{ form.awards }}</p>
                     </div>
                     <div class="text-left description-block">
                         <h3>二、个人技能</h3>
-                        <p>{{ form.skills }}</p>
+                        <p class="preWrap">{{ form.skills }}</p>
                     </div>
                     <div class="text-left description-block">
                         <h3>三、实习/学校/工作经历</h3>
-                        <p>{{ form.experiences }}</p>
+                        <p class="preWrap">{{ form.experiences }}</p>
                     </div>
                     <div class="text-left description-block">
                         <h3>四、自我评价</h3>
-                        <p>{{ form.introduction }}</p>
+                        <p class="preWrap">{{ form.introduction }}</p>
                     </div>
                 </div>
             </div>

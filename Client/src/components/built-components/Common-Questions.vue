@@ -25,20 +25,23 @@
             <div>
                 <my-title :title="contact.title"></my-title>
                 <el-row :gutter="80">
-                    <el-col :span="16">
+                    <el-col :span="12">
                         <img :src="contact.mapSrc" alt="map">
                     </el-col>
-                    <el-col :span="8" id="contact">
+                    <el-col :span="12" id="contact">
                         <p>
-                            <span class="light">本部地址：&nbsp; </span>
+                            <i class="el-icon-location">&nbsp;&nbsp;</i>
+                            <span class="light">联系地址： </span>
                             <span>{{ contact.address }}</span>
                         </p>
                         <p>
-                            <span class="light">联系电话：&nbsp; </span>
+                            <i class="el-icon-mobile-phone">&nbsp;&nbsp;</i>
+                            <span class="light">联系电话： </span>
                             <span>{{ contact.phone }}</span>
                         </p>
                         <p>
-                            <span class="light">电子邮箱：&nbsp; </span>
+                            <i class="el-icon-message">&nbsp;&nbsp;</i>
+                            <span class="light">电子邮箱： </span>
                             <span>{{ contact.email }}</span>
                         </p>
                     </el-col>
@@ -60,7 +63,7 @@ export default {
             navHeight: null,
             // banner图数据
             banner: {
-                src: require('../../assets/images/about-us/banner.jpg'),
+                src: require('../../assets/images/about-us/常见问题banner.jpg'),
                 msg: '常见问题 banner',
                 detailPath: '#'
             },
@@ -81,7 +84,7 @@ export default {
                 address: '云南大学呈贡校区',
                 phone: '15912143364',
                 email: 'lenmontree@qq.com',
-                mapSrc: require('../../assets/images/about-us/map.jpg')
+                mapSrc: require('../../assets/images/about-us/antique-black-classic-747114.jpg')
             }
         }
     },

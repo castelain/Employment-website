@@ -32,6 +32,7 @@ export default {
         position: fixed;
         right: 0;
         bottom: 20%;
+        /* z-index: 10; */
     }
     .el-button {
         display: inline-block;
