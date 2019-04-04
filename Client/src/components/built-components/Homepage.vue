@@ -52,7 +52,7 @@ export default {
             // banner数据
             banners: [
                 {
-                    src: require('../../assets/images/homepage/Dew_by_Aaron_Burden.jpg'),
+                    src: require('../../assets/images/about-us/banner.jpg'),
                     msg: 'banner1'
                 },
                 {

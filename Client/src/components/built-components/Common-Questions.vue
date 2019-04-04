@@ -2,7 +2,12 @@
     <my-container>
         <my-header slot="my-header" id="nav"></my-header>
 
-        <single-banner :img="banner" id="content"></single-banner>
+        <el-row>
+            <el-col :span="24">
+                <single-banner :img="banner" id="content"></single-banner>
+            </el-col>
+        </el-row>
+        
 
         <my-row  style="margin-bottom: 4%;">
             <div>

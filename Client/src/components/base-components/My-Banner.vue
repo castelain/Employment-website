@@ -1,5 +1,5 @@
 <template>
-    <el-carousel height="300px">
+    <el-carousel height="420px">
       <el-carousel-item v-for="(banner, index) in banners" :key="index">
          <img :src="banner.src" alt="banner.msg">
       </el-carousel-item>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped>
-    img {
-        widows: 100%;
+   img {
+        width: 100%;
     }
 </style>
