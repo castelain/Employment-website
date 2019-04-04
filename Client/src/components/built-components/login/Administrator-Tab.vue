@@ -10,15 +10,15 @@
         <el-checkbox
         v-model="form.rememberPassword"
         label="记住密码"
-        class="left"
+        class="center"
         style="color: lightgray"
         ></el-checkbox>
-        <a href="#" style="color: lightgray; font-size: 14px;" class="right">忘记密码</a>
+        <!-- <a href="#" style="color: lightgray; font-size: 14px;" class="right">忘记密码</a> -->
         <el-form-item>
-        <el-button type="success" @click="login(form)" style="margin-top: 5%;">登&nbsp;录</el-button>
+          <el-button type="success" @click="login(form)" style="margin-top: 5%;">登&nbsp;录</el-button>
         </el-form-item>
         <p>没有账号？
-        <router-link to="/register" style="color: green;">注册</router-link>
+         <router-link to="/register" style="color: green;">注册</router-link>
         </p>
     </el-form>
 </template>

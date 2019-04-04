@@ -31,7 +31,7 @@ export default {
         width: 70px;
         position: fixed;
         right: 0;
-        bottom: 20%;
+        bottom: 15%;
         /* z-index: 10; */
     }
     .el-button {

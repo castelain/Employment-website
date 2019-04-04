@@ -10,15 +10,15 @@
         <el-checkbox
           v-model="form.rememberPassword"
           label="记住密码"
-          class="left"
-          style="color: lightgray"
+          style="color: lightgray;"
+          class="center"
         ></el-checkbox>
-        <a href="#" style="color: lightgray; font-size: 14px;" class="right">忘记密码</a>
+        <!-- <a href="#" style="color: lightgray; font-size: 14px;" class="right" v-show="false">忘记密码</a> -->
         <el-form-item>
-        <el-button type="success" @click="login(form)" style="margin-top: 5%;">登&nbsp;录</el-button>
+          <el-button type="success" @click="login(form)" style="margin-top: 5%;">登&nbsp;录</el-button>
         </el-form-item>
         <p>没有账号？
-        <router-link to="/register" style="color: green;">注册</router-link>
+          <router-link to="/register" style="color: green;">注册</router-link>
         </p>
     </el-form>
 </template>
@@ -62,6 +62,18 @@ export default {
                     localStorage.setItem('username', response[0].username);
                     localStorage.setItem('token', response[0].token);
                     localStorage.setItem('type', 0);
+                    // 查询是否有简历，以及有简历的话，简历id是多少
+                    this.$http.get('/api/resume/get-id/' + response[0].id)
+                        .then(response => {
+                          if(response.length >= 1) {
+                            localStorage.setItem('resume_id', response[0].id);
+                          }else {
+                            console.log('该用户尚未创建简历！');
+                          }
+                        })
+                        .catch(error => {
+                          console.log('查询是否有简历，以及有简历的话，简历id是多少的操作失败了：' + error);
+                        });
                     this.$router.push('/');
                 })
                 .catch((error => {
