@@ -11,6 +11,7 @@ function createToken(req) {
     const userToken = {
         "username": req.body.username,
         "password": req.body.password,
+        "type": req.body.type,
         "loginAt": new Date()
     };
     // 签发token，指定过期时间为2d

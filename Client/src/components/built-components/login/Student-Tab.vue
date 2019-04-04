@@ -54,7 +54,8 @@ export default {
             }
             let data = {
               username: this.form.username,
-              password: this.form.password
+              password: this.form.password,
+              type: 0
             };
             this.$http.post('/api/student', data)
                 .then((response) => {

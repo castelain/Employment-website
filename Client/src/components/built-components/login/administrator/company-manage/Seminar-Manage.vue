@@ -81,7 +81,7 @@ export default {
         return {
             seminars: null,
             formLabelWidth: '120px',
-             // 关于分页的设置
+            // 关于分页的设置
             setting: {
                 pageSize: 5,
                 total: null

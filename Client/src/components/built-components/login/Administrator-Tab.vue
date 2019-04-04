@@ -54,7 +54,8 @@ export default {
             }
             let data = {
               username: this.form.username,
-              password: this.form.password
+              password: this.form.password,
+              type: 2
             };
             this.$http.post('/api/administrator', data)
                 .then((response) => {

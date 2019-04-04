@@ -85,11 +85,6 @@ export default {
             console.log(id);
             this.$router.push({ path: '/seminar-detail/' + id });
         },
-        // handleClickBanner: function() {
-        //     console.log('click banner');
-        //     this.$router.push({ path: '/seminar-list' });
-            
-        // }
     },
     mounted() {
         let nav = document.getElementById('nav');
@@ -101,7 +96,7 @@ export default {
             .then(response => {
                 this.notices = response.slice(0, 3);
                 this.notices.map((value, index) => {
-                    value.content = this.formateStr(value.content, 10);
+                    value.content = this.formateStr(value.content, 30);
                 });
             })
             .catch(error => {

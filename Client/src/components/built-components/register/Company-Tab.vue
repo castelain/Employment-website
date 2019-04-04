@@ -147,10 +147,6 @@ export default {
                 address: [
                     { required: true, message: "请输入联系地址", trigger: "blur" },
                 ],
-                // homepage: [
-                //     { required: true, message: "请输入公司主页的网址", trigger: "blur" },
-                //     { pattern: /(https?|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/, message: "请输入正确的公司主页网址", trigger: "blur" }
-                // ],
                 email: [
                     { required: true, message: "请输入联系邮箱", trigger: "blur" },
                     { pattern: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, message: "请输入正确的邮箱", trigger: "blur" }

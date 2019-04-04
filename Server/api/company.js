@@ -61,8 +61,8 @@ router.post('/company', (req, res) => {
             }else {
                  // 签发token
                  let token = createToken(req);
-                 result[0].token = token;
-                 res.json(result);
+                //  result[0].token = token;
+                 res.json({ token: token });
                 // res.json(formateResult(200, '新增一条公司信息成功了！', result));
             }
         });
