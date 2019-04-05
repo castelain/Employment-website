@@ -27,6 +27,7 @@ router.get('/seminar', (req, res) => {
         connection.query(sql_1, [], (err, result) => {
             if(err) {
                 res.json(formateResult(500, '获取宣讲会信息的列表失败了：' + err));
+            }else {
                 // res.json(formateResult(200, '获取宣讲会信息的列表成功了！', result));
                 res.json(result);
             }
