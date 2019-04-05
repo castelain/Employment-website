@@ -70,18 +70,21 @@
 - title: varchar(255) NN
 - created_at: timestamp NN DF(CURRENT_TIMESTAMP)
 - content: varchar(4096) NN
+- created_by: int FK NN
   
 ## Career_Assessment
 - id: int PK NN UN
 - title: varchar(255) NN
 - created_at: timestamp NN DF(CURRENT_TIMESTAMP)
 - content: varchar(4096) NN
+- created_by: int FK NN
   
 ## School_Event
 - id: int PK NN UN
 - title: varchar(255) NN
 - created_at: timestamp NN DF(CURRENT_TIMESTAMP)
 - content: varchar(4096) NN
+- created_by: int FK NN
   
 ## School_College
 - id: int PK NN UN
@@ -89,9 +92,11 @@
 - created_at: timestamp NN DF(CURRENT_TIMESTAMP)
 - content: varchar(4096) NN
 - majors: varchar(255) NN
+- created_by: int FK NN
 
 ## Latest_Notification
 - id: int PK NN UN
 - title: varchar(255) NN
 - created_at: timestamp NN DF(CURRENT_TIMESTAMP)
 - content: varchar(4096) NN
+- created_by: int FK NN
