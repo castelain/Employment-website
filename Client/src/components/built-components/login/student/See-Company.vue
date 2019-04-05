@@ -66,7 +66,7 @@
         </el-table>
 
         <!-- 回复留言的弹出框 -->
-        <el-dialog title="编辑回复留言" :visible.sync="formVisible">
+        <el-dialog title="编辑留言" :visible.sync="formVisible">
             <el-form :model="messageForm">
                 <el-form-item label="回复内容">
                     <el-input v-model="messageForm.message" autocomplete="off"></el-input>
