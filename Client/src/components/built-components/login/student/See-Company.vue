@@ -1,6 +1,6 @@
 <template>
     <div>
-        <my-title title="管理企业" class="title"></my-title>
+        <my-title title="查看企业" class="title"></my-title>
         <el-form :model="form" ref="form" label-width="80px" id="search">
             <el-form-item>
                 <el-input
