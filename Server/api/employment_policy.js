@@ -37,7 +37,7 @@ router.get('/employment_policy/:id', (req, res) => {
 // 新增一条就业政策
 router.post('/employment_policy', (req, res) => {
     let sql = $sql.add_item;
-    connection.query(sql, [ req.body.title, req.body.content ], (err, result) => {
+    connection.query(sql, [ req.body.title, req.body.content, req.body.created_by ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '新增一条就业政策失败了：' + err));
         }else {

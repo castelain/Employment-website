@@ -37,7 +37,7 @@ router.get('/latest_notification/:id', (req, res) => {
 // 新增一条最新通知
 router.post('/latest_notification', (req, res) => {
     let sql = $sql.add_item;
-    connection.query(sql, [ req.body.title, req.body.content ], (err, result) => {
+    connection.query(sql, [ req.body.title, req.body.content, req.body.created_by ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '新增一条最新通知失败了：' + err));
         }else {

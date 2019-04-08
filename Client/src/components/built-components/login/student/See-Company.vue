@@ -4,7 +4,7 @@
         <el-form :model="form" ref="form" label-width="80px" id="search">
             <el-form-item>
                 <el-input
-                    placeholder="请输入关键字"
+                    placeholder="请输入关键字(名称、类型、规模等)"
                     prefix-icon="el-icon-search"
                     v-model="form.keyword" @keyup.native.enter="search">
                 </el-input>
@@ -65,10 +65,10 @@
             </el-table-column>
         </el-table>
 
-        <!-- 回复留言的弹出框 -->
+        <!-- 发送留言的弹出框 -->
         <el-dialog title="编辑留言" :visible.sync="formVisible">
             <el-form :model="messageForm">
-                <el-form-item label="回复内容">
+                <el-form-item label="留言内容">
                     <el-input v-model="messageForm.message" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
@@ -117,18 +117,18 @@ export default {
             }
         },
         send: function (row) {
-            this.form.student_id = localStorage.getItem('id');
-            this.form.company_id = row.id;
+            this.messageForm.student_id = localStorage.getItem('id');
+            this.messageForm.company_id = row.id;
             this.formVisible = true;
         },
-        sendMessage: function (row) {
+        sendMessage: function () {
             if(this.messageForm.message === '') {
                 this.$message({
                     type: 'error',
                     message: '留言信息不可为空！'
                 });
             }else {
-                this.$http.post('/api//student_company/to_company', this.form)
+                this.$http.post('/api/student_company/to_company', this.messageForm)
                     .then(response => {
                         this.$message({
                             type: 'success',

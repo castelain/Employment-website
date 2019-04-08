@@ -111,7 +111,8 @@ export default {
             addForm: {
                 title: '',
                 majors: '',
-                content: ''
+                content: '',
+                created_by: localStorage.getItem('id')
             },
         }
     },

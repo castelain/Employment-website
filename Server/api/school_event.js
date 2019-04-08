@@ -35,7 +35,7 @@ router.get('/school_event/:id', (req, res) => {
 // 新增一条学校事件
 router.post('/school_event', (req, res) => {
     let sql = $sql.add_item;
-    connection.query(sql, [ req.body.title, req.body.content ], (err, result) => {
+    connection.query(sql, [ req.body.title, req.body.content, req.body.created_by ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '新增一条学校事件失败了：' + err));
         }else {

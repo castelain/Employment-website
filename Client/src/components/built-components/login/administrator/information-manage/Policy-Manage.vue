@@ -97,7 +97,8 @@ export default {
             // 添加表单的数据
             addForm: {
                 title: '',
-                content: ''
+                content: '',
+                created_by: localStorage.getItem('id')
             },
         }
     },

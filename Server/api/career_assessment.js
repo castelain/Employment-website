@@ -36,7 +36,7 @@ router.get('/career_assessment/:id', (req, res) => {
 // 新增一条职业评测
 router.post('/career_assessment', (req, res) => {
     let sql = $sql.add_item;
-    connection.query(sql, [ req.body.title, req.body.content ], (err, result) => {
+    connection.query(sql, [ req.body.title, req.body.content, req.body.created_by ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '新增一条职业评测失败了：' + err));
         }else {

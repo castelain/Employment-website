@@ -37,7 +37,7 @@ router.get('/school_college/:id', (req, res) => {
 // 新增一条学校学院
 router.post('/school_college', (req, res) => {
     let sql = $sql.add_item;
-    connection.query(sql, [ req.body.title, req.body.majors, req.body.content ], (err, result) => {
+    connection.query(sql, [ req.body.title, req.body.majors, req.body.content, req.body.created_by ], (err, result) => {
         if(err) {
             res.json(formateResult(500, '新增一条学校学院失败了：' + err));
         }else {
