@@ -15,6 +15,10 @@
                         <div slot="content">
                             {{ notification.content | formateStr(52) }}
                         </div>
+                        <div slot="info" style="margin-top: 4%;">
+                            <span>发布时间：</span>
+                            <span>{{ notification.created_at | formatTime }}</span>
+                        </div>
                     </my-card>
                 </el-col>
             </el-row>

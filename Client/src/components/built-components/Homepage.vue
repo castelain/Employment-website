@@ -15,7 +15,7 @@
                     <el-col :span="18">
                         <my-title :title="seminarTitle"></my-title>
                         <el-row :gutter="20">
-                            <el-col :span="12" v-for="(seminar, index) in seminars" :key="index">
+                            <el-col :span="12" v-for="(seminar, index) in seminars" :key="index" style="margin-bottom: 3%;">
                                 <my-card>
                                     <div slot="title">
                                         <span>{{ seminar.name }}</span>
@@ -25,13 +25,17 @@
                                         <span class="text-bold">招聘专业：</span>
                                         <span>{{ seminar.majors }}</span>
                                     </div>
+                                    <div slot="info" style="margin-top: 3%;">
+                                        <span>举行地点：</span>
+                                        <span>{{ seminar.address }}</span>
+                                    </div>
                                     <div slot="info" style="margin-top: 4%;">
                                         <span>举行时间：</span>
                                         <span>{{ seminar.holds_in }}</span>
                                     </div>
                                 </my-card>
                             </el-col>
-                            <el-button type="text" @click="seeMoreSeminars" style="margin-top: 6%;">查看更多</el-button>
+                            <el-button type="text" @click="seeMoreSeminars" style="margin-top: 3%;">查看更多</el-button>
                         </el-row>
                     </el-col>
                 </el-row>

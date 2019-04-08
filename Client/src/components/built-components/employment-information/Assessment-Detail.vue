@@ -5,7 +5,8 @@
         <div id="content">
             <my-row>
                 <my-inner-nav :navs="innerNavs"></my-inner-nav>
-                <my-title :title="assessmentDetail.title" style="margin-bottom: 2%;"></my-title>
+                <my-title :title="assessmentDetail.title"></my-title>
+                <p style="margin-top: -4%;margin-bottom: 2%;">发布时间： {{ assessmentDetail.created_at | formatTime }}</p>
                 <a href="https://www.apesk.com/holland/index.html" id="link" target="blank">霍兰德职业兴趣量表及在线测试(完整专业版) - 才储</a>
                 <p class="text-left preWrap" style="margin-top: 4%;">{{ assessmentDetail.content }}</p>
             </my-row>

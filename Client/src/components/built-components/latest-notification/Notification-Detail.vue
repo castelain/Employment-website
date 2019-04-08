@@ -6,7 +6,7 @@
       <my-row>
         <my-inner-nav :navs="innerNavs"></my-inner-nav>
         <my-title :title="notificationDetail.title" style="margin-bottom: 2%;"></my-title>
-        <span >创建时间： {{ notificationDetail.created_at | formatTime }}</span>
+        <span >发布时间： {{ notificationDetail.created_at | formatTime }}</span>
         <p class="text-left preWrap" style="margin-top: 4%;">{{ notificationDetail.content }}</p>
       </my-row>
     </div>

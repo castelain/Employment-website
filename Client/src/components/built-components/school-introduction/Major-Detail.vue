@@ -9,6 +9,10 @@
                 <div class="text-bold" id="majors">
                     {{ majorDetail.majors }}
                 </div>
+                <div class="time">
+                    <span>发布时间：</span>
+                    <span>{{ majorDetail.created_at | formatTime }}</span>
+                </div>
                 <div class="preWrap text-left">
                     {{ majorDetail.content }}
                 </div>
@@ -64,7 +68,12 @@ export default {
 <style scoped>
     #majors {
         margin-top: -4%;
-        margin-bottom: 4%;
+        /* margin-bottom: 4%; */
+    }
+    .time {
+        margin-top: 2%;
+        color: grey;
+        font-size: 14px;
     }
 </style>
 
