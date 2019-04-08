@@ -39,6 +39,7 @@ export default {
                         message: '删除简历成功了！'
                     });
                     localStorage.removeItem('resume_id');
+                    this.$router.push({path: '/student/create-profile'});
                 })
                 .catch(error => {
                     this.$message({

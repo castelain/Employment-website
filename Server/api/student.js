@@ -61,10 +61,10 @@ router.post('/student', (req, res) => {
                 res.json(formateResult(500, '新增一条学生信息失败了：' + err));
             }else {
                 // 签发token
-                let token = createToken(req);
-                result[0].token = token;
-                // res.json(formateResult(200, '新增一条学生信息成功了！', result));
-                res.json(result);
+                // let token = createToken(req);
+                // result[0].token = token;
+                res.json(formateResult(200, '新增一条学生信息成功了！', result));
+                // res.json({token: token});
             }
         });
     }else {

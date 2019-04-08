@@ -132,7 +132,6 @@
                     </el-input>
                 </el-form-item>
 
-            
                 <el-form-item>
                     <el-button type="primary" @click="submit(form)">提交</el-button>
                 </el-form-item>
@@ -501,7 +500,7 @@ export default {
         submit: function(form) {
             this.$refs['form'].validate(valid => {
                 if(valid) {
-                    this.form.birthday = Number(this.form.birthday);
+                    // this.form.birthday = Number(this.form.birthday);
                     this.$http.post('/api/resume', this.form)
                         .then(response => {
                             this.$message({

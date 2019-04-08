@@ -34,7 +34,7 @@ router.get('/seminar', (req, res) => {
         });
     }else {
         //  管理员
-        if(user.type === 2) {
+        if(user.type && user.type === 2) {
             connection.query(sql_2, [ keyword, keyword, keyword, keyword ], (err, result) => {
                 if(err) {
                     res.json(formateResult(500, '根据关键字查找宣讲会信息失败了：' + err));
