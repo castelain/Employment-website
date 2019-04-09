@@ -78,7 +78,7 @@ router.get('/company/:id/seminar', (req, res) => {
     let sql_1 = $sql.select_by_companyId;
     let sql_2 = $sql.select_by_keyword_companyId;
     let keyword = req.query.keyword;
-    let user = retoken(req, res);
+    // let user = retoken(req, res);
     // console.log('user.type:' + user.type);
     if(!keyword) {
         // 获取指定company_id的宣讲会信息列表
@@ -93,7 +93,7 @@ router.get('/company/:id/seminar', (req, res) => {
         });
     }else {
         // 根据输入的关键字，查询指定company_id的宣讲会信息
-        connection.query(sql_2, [ keyword, keyword, keyword, keyword ], (err, result) => {
+        connection.query(sql_2, [ req.params['id'], keyword, keyword, keyword ], (err, result) => {
             if(err) {
                 res.json(formateResult(500, '根据关键字查找宣讲会信息失败了：' + err));
                 return;

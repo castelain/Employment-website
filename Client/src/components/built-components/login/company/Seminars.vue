@@ -5,9 +5,9 @@
         <el-form :model="form" ref="form" label-width="80px" id="search">
             <el-form-item>
                 <el-input
-                    placeholder="请输入关键字"
+                    placeholder="请输入关键字（招聘专业、审核状态、举办地址）"
                     prefix-icon="el-icon-search"
-                    v-model="form.keyword" @keyup.native.enter="search">
+                    v-model.trim="form.keyword" @keyup.native.enter="search">
                 </el-input>
             </el-form-item>
         </el-form>

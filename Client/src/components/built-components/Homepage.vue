@@ -105,9 +105,9 @@ export default {
             })
             .catch(error => {
                 this.$message({
-                        type: 'error',
-                        message: '获取最新通知列表失败了！'+ error.msg
-                    });
+                    type: 'error',
+                    message: '获取最新通知列表失败了！'+ error.msg
+                });
             });
 
         this.$http.get('/api/seminar?keyword=1')
@@ -115,7 +115,7 @@ export default {
                 response.map((item, index) => {
                     item.holds_in = this.formatTime(item.holds_in);
                 });
-                this.seminars = response.slice(0, 5);
+                this.seminars = response.slice(0, 4);
             })
             .catch(error => {
                 console.log('获取宣讲会信息列表失败了:' + error);

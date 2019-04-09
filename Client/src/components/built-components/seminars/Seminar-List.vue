@@ -11,7 +11,7 @@
                         style="width: 60%; margin: 4% auto;"
                         placeholder="请输入关键字(公司名称、招聘专业、举办地址)"
                         prefix-icon="el-icon-search"
-                        v-model="form.keyword" @keyup.native.enter="search">
+                        v-model.trim="form.keyword" @keyup.native.enter="search">
                     </el-input>
                 </el-form-item>
             </el-form>
