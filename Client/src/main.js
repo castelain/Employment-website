@@ -33,6 +33,9 @@ Moment.locale('zh-cn')
 Vue.config.productionTip = false
 Vue.prototype.$http = http
 
+// 引入MD5
+import crypto from 'crypto'
+
 // 注册全局组件
 Vue.component('my-container', MyContainer)
 Vue.component('my-row', MyRow)
@@ -121,6 +124,13 @@ Vue.prototype.formateStatus = function(status) {
     } else {
       return '审核不通过'
     }
+}
+
+// 密码加密函数
+Vue.prototype.setMd5 = function(rawPassword, salt) {
+  let md5 = crypto.createHash('md5')
+  md5.update(rawPassword + ':' + salt)
+  return md5.digest('hex')
 }
 
 // 引入element-ui组件库

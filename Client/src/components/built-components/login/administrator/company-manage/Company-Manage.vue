@@ -1,6 +1,7 @@
 <template>
     <div>
         <my-title title="管理企业" class="title"></my-title>
+        <export-excel-2 :excelSetting="excelSetting" class="exportBtn"></export-excel-2>
         <el-form :model="form" ref="form" label-width="80px" id="search">
             <el-form-item>
                 <el-input
@@ -70,6 +71,7 @@
 </template>
 
 <script>
+import ExportExcel2 from '../../../../base-components/Export-Excel-2'
 export default {
     name: 'CompanyManage',
     data () {
@@ -86,13 +88,20 @@ export default {
             // 搜索表单
             form: {
                 keyword: ''
+            },
+            // 导出表格的设置
+            excelSetting: {
+                fileName: '企业信息统计表',
+                tHeader: [ '用户名', '公司名称', '公司类型', '公司规模', '公司地址', '公司邮箱', '公司联系人', '公司联系人电话' ],
+                filterVal: [ 'username', 'name', 'kind', 'scale', 'address', 'email', 'link_man', 'link_man_tel' ],
+                list: [] 
             }
         }
     },
+    components: {
+        'export-excel-2': ExportExcel2
+    },
     methods: {
-        seeProfile: function(row) {
-            
-        },
         handleCurrentChange: function(val) {
             if(val === 1) {
                 this.companies = this.temp.slice(0, this.setting.pageSize);;
@@ -127,6 +136,8 @@ export default {
                     this.temp = this.companies;
                     // 初始化首页的显示记录
                     this.handleCurrentChange(1);
+                    // 更新导出表格的数据
+                    this.excelSetting.list = this.temp;
                 })
                 .catch(error => {
                     console.log('搜索企业信息列表失败了:' + error);
@@ -141,6 +152,8 @@ export default {
                         this.temp = this.companies;
                         // 初始化首页的显示记录
                         this.handleCurrentChange(1);
+                        // 更新导出表格的数据
+                        this.excelSetting.list = this.temp;
                     })
                     .catch(error => {
                         console.log('搜索企业信息列表失败了:' + error);
@@ -158,6 +171,8 @@ export default {
                 this.temp = this.companies;
                 // 初始化首页的显示记录
                 this.handleCurrentChange(1);
+                // 初始化导出表格的数据
+                this.excelSetting.list = this.temp;
             })
             .catch(error => {
                 console.log('获取企业信息列表失败了:' + error);

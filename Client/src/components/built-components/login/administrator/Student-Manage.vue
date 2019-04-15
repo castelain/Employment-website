@@ -1,6 +1,8 @@
 <template>
     <div>
         <my-title title="管理学生" class="title"></my-title>
+        <export-excel-2 :excelSetting="excelSetting" class="exportBtn"></export-excel-2>
+        <!-- <export-excel :excelSetting="excelSetting" class="exportBtn"></export-excel> -->
         <el-form :model="form" ref="form" label-width="80px" id="search">
             <el-form-item>
                 <el-input
@@ -14,7 +16,7 @@
         <el-table
             :data="students"
             stripe border
-            style="width: 100%">
+            style="width: 100%" id='table'>
             <el-table-column
                 prop="username"
                 label="用户名"
@@ -54,6 +56,8 @@
 </template>
 
 <script>
+// import ExportExcel from '../../../base-components/Export-Excel'
+import ExportExcel2 from '../../../base-components/Export-Excel-2'
 export default {
     name: 'StudentManage',
     data () {
@@ -70,8 +74,24 @@ export default {
             // 搜索表单
             form: {
                 keyword: ''
+            },
+            // 导出表格的设置
+            // excelSetting: {
+            //     domStr: '#table',
+            //     type: 'xlsx',
+            //     fileName: '学生信息统计表'
+            // }
+            // 导出表格的设置
+            excelSetting: {
+                fileName: '学生信息统计表',
+                tHeader: [ '用户名', '真实姓名', '学校', '学院', '专业' ],
+                filterVal: [ 'username', 'realname', 'school', 'college', 'major' ],
+                list: [] 
             }
         }
+    },
+    components: {
+        'export-excel-2': ExportExcel2
     },
     methods: {
         seeProfile: function(row) {
@@ -124,6 +144,8 @@ export default {
                     this.temp = this.students;
                     // 初始化首页的显示记录
                     this.handleCurrentChange(1);
+                    // 更新导出表格的数据
+                    this.excelSetting.list = this.temp;
                 })
                 .catch(error => {
                     console.log('搜索学生信息列表失败了:' + error);
@@ -138,6 +160,8 @@ export default {
                         this.temp = this.students;
                         // 初始化首页的显示记录
                         this.handleCurrentChange(1);
+                        // 更新导出表格的数据
+                        this.excelSetting.list = this.temp;
                     })
                     .catch(error => {
                         console.log('搜索学生信息列表失败了:' + error);
@@ -155,6 +179,8 @@ export default {
                 this.temp = this.students;
                 // 初始化首页的显示记录
                 this.handleCurrentChange(1);
+                // 初始化导出表格的数据
+                this.excelSetting.list = this.temp;
             })
             .catch(error => {
                 console.log('获取学生信息列表失败了:' + error);

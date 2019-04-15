@@ -52,9 +52,10 @@ export default {
               localStorage.setItem('username', this.form.username);
               localStorage.setItem('password', this.form.password);
             }
+            let saltPassword = this.setMd5(this.form.password, 'jasmine');
             let data = {
               username: this.form.username,
-              password: this.form.password,
+              password: saltPassword,
               type: 2
             };
             this.$http.post('/api/administrator', data)

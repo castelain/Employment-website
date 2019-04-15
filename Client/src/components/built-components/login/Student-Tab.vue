@@ -30,7 +30,7 @@ export default {
       return {
         form: {
           username: null,
-          password: null,
+          password: '',
           rememberPassword: null
         },
         // 表单验证规则
@@ -48,13 +48,16 @@ export default {
     login: function(form) {
         this.$refs['form'].validate((valid) => {
           if(valid) {
+            // console.log('valid');
             if(this.form.rememberPassword){
               localStorage.setItem('username', this.form.username);
               localStorage.setItem('password', this.form.password);
             }
+            // console.log(this.form.password);
+            let saltPassword = this.setMd5(this.form.password, 'jasmine');
             let data = {
               username: this.form.username,
-              password: this.form.password,
+              password: saltPassword,
               type: 0
             };
             this.$http.post('/api/student', data)

@@ -87,6 +87,8 @@ export default {
                 this.$refs['form'].validate((valid) => {
                     if(valid) {
                         if(this.form.password === this.form.password2){
+                            let saltPassword = this.setMd5(this.form.password, 'jasmine');
+                            this.form.password = saltPassword;
                             this.$http.post('/api/student', this.form)
                                 .then((response) => {
                                     localStorage.setItem('token', response.token);

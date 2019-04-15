@@ -1,6 +1,7 @@
 <template>
     <div>
         <my-title title="管理专业简介" class="title"></my-title>
+        <export-excel-2 :excelSetting="excelSetting" class="exportBtn right"></export-excel-2>
         <el-button @click="add" type="text">添加</el-button>
         <el-table
             :data="collegs"
@@ -85,6 +86,7 @@
 </template>
 
 <script>
+import ExportExcel2 from '../../../../base-components/Export-Excel-2'
 export default {
     name: 'CollegeManage',
     data () {
@@ -114,7 +116,17 @@ export default {
                 content: '',
                 created_by: localStorage.getItem('id')
             },
+            // 导出表格的设置
+            excelSetting: {
+                fileName: '专业信息统计表',
+                tHeader: [ '学院', '专业', '简介', '发布日期' ],
+                filterVal: [ 'title', 'content', 'majors', 'created_at' ],
+                list: [] 
+            }
         }
+    },
+    components: {
+        'export-excel-2': ExportExcel2
     },
     methods: {
         see: function(row) {
@@ -199,6 +211,8 @@ export default {
                 this.temp = this.collegs;
                 // 初始化首页的显示记录
                 this.handleCurrentChange(1);
+                // 初始化导出表格的数据
+                this.excelSetting.list = this.temp;
             })
             .catch(error => {
                 console.log('获取专业简介列表失败了:' + error);

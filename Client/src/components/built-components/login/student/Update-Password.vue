@@ -28,9 +28,14 @@ export default {
     },
     methods: {
         update: function() {
+            // console.log(this.form);
+            // console.log('update password...');
             this.$http.get('/api/student/' + localStorage.getItem('id'))
                 .then(response => {
-                    if(response[0].password == this.form.oldPassword) {
+                    let oldPassword = this.setMd5(this.form.oldPassword, 'jasmine');
+                    // alert('response[0].password: ' + response[0].password + '; saltPassword: ' + saltPassword);
+                    if(response[0].password == oldPassword) {
+                        this.form.password = this.setMd5(this.form.password, 'jasmine');
                         this.$http.put('/api/student/' + localStorage.getItem('id'), this.form)
                             .then(response => {
                                 // 更改密码后，重置token
@@ -44,20 +49,24 @@ export default {
                             })
                             .catch(error => {
                                 this.$message({
-                                    type: 'danger',
+                                    type: 'error',
                                     message: '更新密码失败！'
                                 });
                             });
                     }else {
+                        // this.$message({
+                        //     type: 'error',
+                        //     message: 'response[0].password: ' + response[0].password + '; saltPassword: ' + saltPassword
+                        // });
                         this.$message({
-                            type: 'danger',
+                            type: 'error',
                             message: '更新密码失败：原来的密码输入错误！'
                         });
                     }
                 })
                 .catch(error => {
                     this.$message({
-                        type: 'danger',
+                        type: 'error',
                         message: '更新密码失败！' + error
                     });
                 });

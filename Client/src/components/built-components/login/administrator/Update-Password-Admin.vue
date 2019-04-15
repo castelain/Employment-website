@@ -30,7 +30,9 @@ export default {
         update: function() {
             this.$http.get('/api/administrator/' + localStorage.getItem('id'))
                 .then(response => {
-                    if(response[0].password == this.form.oldPassword) {
+                    let oldPassword = this.setMd5(this.form.oldPassword, 'jasmine');
+                    if(response[0].password == oldPassword) {
+                        this.form.password = this.setMd5(this.form.password, 'jasmine');
                         this.$http.put('/api/administrator/' + localStorage.getItem('id'), this.form)
                             .then(response => {
                                 // 更改密码后，重置token

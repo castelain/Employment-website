@@ -1,6 +1,8 @@
 <template>
     <div>
         <my-title title="管理宣讲会" class="title"></my-title>
+        <!-- <export-excel :excelSetting="excelSetting" class="exportBtn"></export-excel> -->
+        <export-excel-2 :excelSetting="excelSetting" class="exportBtn"></export-excel-2>
         <el-form :model="form" ref="form" label-width="80px" id="search">
             <el-form-item>
                 <el-input
@@ -14,7 +16,7 @@
         <el-table
             :data="seminars"
             stripe border
-            style="width: 100%">
+            style="width: 100%" id="table">
             <el-table-column
                 prop="name"
                 label="公司名称"
@@ -75,6 +77,8 @@
 </template>
 
 <script>
+// import ExportExcel from '../../../../base-components/Export-Excel'
+import ExportExcel2 from '../../../../base-components/Export-Excel-2'
 export default {
     name: 'SeminarManage',
     data () {
@@ -91,8 +95,24 @@ export default {
             // 搜索表单
             form: {
                 keyword: ''
+            },
+            // 导出表格的设置
+            // excelSetting: {
+            //     domStr: '#table',
+            //     type: 'xlsx',
+            //     fileName: '宣讲会信息统计表'
+            // }
+            // 导出表格的设置
+            excelSetting: {
+                fileName: '宣讲会信息统计表',
+                tHeader: [ '公司名称', '招聘专业', '举行时间', '举行地点', '审核状态', '提交时间', '公司描述', '工作描述', '薪资待遇', '面试流程' ],
+                filterVal: [ 'name', 'majors', 'holds_in', 'address', 'status', 'created_at', 'company_description', 'job_description', 'salary_description', 'application_process' ],
+                list: [] 
             }
         }
+    },
+    components: {
+        'export-excel-2': ExportExcel2
     },
     methods: {
         handleCurrentChange: function(val) {
@@ -154,6 +174,8 @@ export default {
                         this.temp = this.seminars;
                         // 初始化首页的显示记录
                         this.handleCurrentChange(1);
+                        // 更新导出表格的数据
+                        this.excelSetting.list = this.temp;
                 })
                 .catch(error => {
                     console.log('搜索宣讲会信息列表失败了:' + error);
@@ -185,6 +207,8 @@ export default {
                         this.temp = this.seminars;
                         // 初始化首页的显示记录
                         this.handleCurrentChange(1);
+                        // 更新导出表格的数据
+                        this.excelSetting.list = this.temp;
                     })
                     .catch(error => {
                         console.log('搜索宣讲会信息列表失败了:' + error);
@@ -211,6 +235,8 @@ export default {
                 this.temp = this.seminars;
                 // 初始化首页的显示记录
                 this.handleCurrentChange(1);
+                // 初始化导出表格的数据
+                this.excelSetting.list = this.temp;
             })
             .catch(error => {
                 console.log('获取宣讲会信息列表失败了:' + error);
